@@ -1,0 +1,51 @@
+﻿$mainframe-spacing: 15px;
+
+* {
+  box-sizing: border-box !important;
+}
+
+// enable all the elements down to the main-frame
+// to take up the entire screenspace
+html,
+body,
+#___gatsby,
+#gatsby-focus-wrapper,
+.index-component,
+.layout-component,
+.themed-background-component,
+main,
+.main-frame,
+.main-frame-inside
+{
+  height: 100%;
+}
+
+footer, .footer-status-bar {
+  width: 100%;
+}
+
+.main-frame {
+  // add a vertical margin the size of the padding
+  margin: 0 $mainframe-spacing;
+}
+
+.main-frame-inside {
+  padding: $mainframe-spacing 0px 0px 0px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.main-content {
+  // take up as much space as possible
+  flex-grow: 1;
+  padding: $mainframe-spacing;
+}
+
+.footer-status-bar {
+  // move the status bar content the same amount off the border as the main content vor visual effect
+  padding-left: $mainframe-spacing
+}
