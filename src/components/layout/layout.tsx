@@ -5,6 +5,7 @@ import '@fontsource/fusion-pixel-12px-monospaced-sc';
 import './layout.scss'
 import {AppMenuBar} from "./app-menu-bar";
 import {React95Theme} from "../../utils/React95Theme";
+import {ClippyProvider} from "@react95/clippy";
 
 const GlobalStyles = createGlobalStyle`
     ${styleReset}
@@ -49,25 +50,28 @@ export const Layout: React.FC<PropsWithChildren<{}>> = (props): ReactElement => 
 
     return (<div className='layout-component'>
         <GlobalStyles/>
-        {!!theme && <ThemeProvider theme={theme}>
-            <ThemedBackground className='themed-background-component'>
-                <div className="main-frame">
-                    <header>
-                        <AppMenuBar themePicked={t => setThemeSelection(t)}/>
-                    </header>
-                    <div className='main-content'>
-                        <main>
-                            {props.children}
-                        </main>
-                    </div>
-                    <footer className='status-bar'>
-                        <Frame className='footer-status-bar'>
-                            asdf
-                        </Frame>
-                    </footer>
-                </div>
-            </ThemedBackground>
-        </ThemeProvider>
-        }
+        <ClippyProvider agentName="Clippy">
+            {
+                !!theme && <ThemeProvider theme={theme}>
+                    <ThemedBackground className='themed-background-component'>
+                        <div className="main-frame">
+                            <header>
+                                <AppMenuBar themePicked={t => setThemeSelection(t)}/>
+                            </header>
+                            <div className='main-content'>
+                                <main>
+                                    {props.children}
+                                </main>
+                            </div>
+                            <footer className='status-bar'>
+                                <Frame className='footer-status-bar'>
+                                    asdf
+                                </Frame>
+                            </footer>
+                        </div>
+                    </ThemedBackground>
+                </ThemeProvider>
+            }
+        </ClippyProvider>
     </div>);
 }

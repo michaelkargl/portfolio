@@ -1,6 +1,6 @@
 ﻿import {ALL_THEMES, React95Theme} from "../../utils/React95Theme";
 import React, {ReactElement} from "react";
-import {Select, SelectNative} from "react95";
+import {SelectNative} from "react95";
 
 export interface ThemePickerProps {
     themes: React95Theme[]
@@ -16,6 +16,6 @@ const ALL_THEME_OPTIONS = ALL_THEMES.map(t => ({
 export const ThemePicker: React.FC<ThemePickerProps> = (props: ThemePickerProps): ReactElement => {
     return (
         <SelectNative options={ALL_THEME_OPTIONS}
-                onChange={(selected, ev) => props.themePicked(selected.value)} />
+                onChange={(selected, ev) => props.themePicked(selected.value as React95Theme)} />
     )
 };
