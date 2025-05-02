@@ -13,11 +13,11 @@ body,
 .index-component,
 .layout-component,
 .themed-background-component,
-main,
-.main-frame,
-.main-frame-inside
+main
 {
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 footer, .footer-status-bar {
@@ -25,15 +25,6 @@ footer, .footer-status-bar {
 }
 
 .main-frame {
-  // add a vertical margin the size of the padding
-  margin: 0 $mainframe-spacing;
-}
-
-.main-frame-inside {
-  padding: $mainframe-spacing 0px 0px 0px;
-}
-
-.flex-container {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -43,6 +34,7 @@ footer, .footer-status-bar {
   // take up as much space as possible
   flex-grow: 1;
   padding: $mainframe-spacing;
+  overflow-y: auto;
 }
 
 .footer-status-bar {

@@ -1,52 +1,34 @@
-﻿import React, {ReactElement, useState} from "react";
-import {AppBar, Button, MenuList, MenuListItem, Separator, TextInput, Toolbar} from "react95";
+﻿import React, {ReactElement} from "react";
+import {AppBar, MenuListItem, Separator, TextInput, Toolbar} from "react95";
+import {MenuButton} from "./menu-button";
+
+
 
 export const AppMenuBar: React.FC = (): ReactElement => {
-    const [open, setOpen] = useState(false);
-
-    return (<AppBar className="app-menu-bar">
+    // position = relative is important here to have menu and content below stackable instead of the content moving behind the start button
+    return (<AppBar position="relative" className="app-menu-bar">
         <Toolbar style={{justifyContent: 'space-between'}}>
             <div style={{position: 'relative', display: 'inline-block'}}>
-                <Button
-                    onClick={() => setOpen(!open)}
-                    active={open}
-                    style={{fontWeight: 'bold'}}
-                >
-                    Start
-                </Button>
-                {open && (
-                    <MenuList
-                        style={{
-                            position: 'absolute',
-                            left: '0',
-                            top: '100%'
-                        }}
-                        onClick={() => setOpen(false)}
-                    >
+                <MenuButton>
+                    <>
                         <MenuListItem>
-                                    <span role='img' aria-label='👨‍💻'>
-                                      👨‍💻
-                                    </span>
+                            <span role='img' aria-label='👨‍💻'>👨‍💻</span>
                             Profile
                         </MenuListItem>
                         <MenuListItem>
-                                    <span role='img' aria-label='📁'>
-                                      📁
-                                    </span>
+                            <span role='img' aria-label='📁'>📁</span>
                             My account
                         </MenuListItem>
                         <Separator/>
                         <MenuListItem disabled>
-                                    <span role='img' aria-label='🔙'>
-                                      🔙
-                                    </span>
+                            <span role='img' aria-label='🔙'>🔙</span>
                             Logout
                         </MenuListItem>
-                    </MenuList>
-                )}
+                    </>
+                </MenuButton>
             </div>
 
-            <TextInput placeholder='Search...' width={150}/>
+            <TextInput placeholder='Search...' width={150} disabled={true} />
         </Toolbar>
     </AppBar>);
 }
