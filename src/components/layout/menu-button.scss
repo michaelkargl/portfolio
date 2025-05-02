@@ -1,0 +1,12 @@
+﻿.menu-button-component {
+  #{&}--button {
+    font-weight: bold;
+  }
+
+  #{&}--menu-list {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    z-index: 9999;
+  }
+}

@@ -1,5 +1,6 @@
 ﻿import React, {PropsWithChildren, ReactElement, useState} from "react";
 import {Button, MenuList} from "react95";
+import './menu-button.scss';
 
 type MenuButtonProps = PropsWithChildren<{}>;
 
@@ -10,20 +11,18 @@ type MenuButtonProps = PropsWithChildren<{}>;
 export const MenuButton: React.FC<MenuButtonProps> = (props: MenuButtonProps): ReactElement => {
     const [open, setOpen] = useState(false);
 
-    return (<>
-        <Button onClick={() => setOpen(!open)} active={open} style={{fontWeight: 'bold'}}> Start </Button>
+    return (<div className='menu-button-component'>
+        <Button className='menu-button-component--button'
+                onClick={() => setOpen(!open)} active={open}>
+            Start
+        </Button>
+
         {open && (
-            <MenuList
-                style={{
-                    position: 'absolute',
-                    left: '0',
-                    top: '100%',
-                    zIndex: 9999,
-                }}
-                onClick={() => setOpen(false)}
-            >
+            <MenuList className='menu-button-component--menu-list'
+                      onClick={() => setOpen(false)}>
                 {props.children}
             </MenuList>
         )}
-    </>)
+        
+    </div>)
 }
