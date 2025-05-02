@@ -13,14 +13,15 @@ local_backend:
 #  branch: master
 #  auth_type: pkce
 
-media_folder: static/assets
+media_folder: cms/assets
 public_folder: /assets
 
 collections:
   - name: curriculum
     label: Curricula
     label_singular: Curriculum
-    folder: curriculum
+    folder: src/cms/curriculum
     create: true
     fields:
       - { name: aboutMe, label: About Me }
+      - { name: title, label: Title }

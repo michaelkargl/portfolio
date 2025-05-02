@@ -1,49 +1,73 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby Minimal TypeScript Starter
-</h1>
+# Portfolio
 
-## 🚀 Quick start
 
-1.  **Create a Gatsby site.**
+## Tags
 
-    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
+<!-- Languages, Frameworks, Libraries, Hosting Platforms, CI/CD, IaC, Scripting languages -->
 
-    ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby -- -ts
-    ```
+Gatsby, GatsbyJS, DecapCMS, ReactJS, React, JavaScript, HTML, CSS,
+GitHab, GiHub Pages, Typescript, Luxon, Moment.js, PWA, IDB,
+IndexedDB, IDB-KeyVal, React Hooks, Yarn 
 
-2.  **Start developing.**
+## 🍎 Requirements
 
-    Navigate into your new site’s directory and start it up.
+- Install _[Powershell][pwsh-installation]_
+- Install node
+    1. Install _[nvm]_ (linux) or `nvm-windows`
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+    2. ```pwsh
+     nvm install "$(cat .nvmrc)"
+     nvm use "$(cat .nvmrc)"
+     node --version
+     npm --version
+     ```
+    3. Install yarn
 
-3.  **Open the code and start customizing!**
+       ```pwsh
+       npm install --global yarn
+       yarn
+       ```
 
-    Your site is now running at http://localhost:8000!
+[pwsh-installation]: https://learn.microsoft.com/de-de/powershell/scripting/install/installing-powershell?view=powershell-7.5
+[nvm]: https://github.com/nvm-sh/nvm
+[nvm-windows]: https://github.com/coreybutler/nvm-windows
 
-    Edit `src/pages/index.tsx` to see your site update in real-time!
 
-4.  **Learn more**
+## ⌨️ Quick start
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+1. Clone the repository
+1. ```pwsh
+   # install dependencies
+   yarn
+   # run local dev server
+   yarn run start
 
-## 🚀 Quick start (Netlify)
+   # if you want to access the CMS
+   yarn run serve:cms
+   ```
 
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
+1. Open your browser and visit <http://localhost:8000>
+1. To access the CMS admin panel, visit <http://localhost:8000/admin>
 
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+> If the URLs wont work, please check configuration for the right port or the URL printed in the console after serving
+> it locally.
+
+## CMS
+
+The project uses a CMS to form its content. To be able to write files to the local git repository
+it needs an API to connect to. This api can be started by doing 
+
+```pwsh
+yarn run serve:cms
+```
+
+> Note: Sometimes the auto login doesn't work. In which case do a page refresh.
+> It should automatically open the CMS admin panel.
+
+## Deploy
+
+At the moment, deployment is done manually to the `gh-pages` branch:
+
+```pwsh
+yarn run deploy
+```

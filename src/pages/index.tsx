@@ -1,9 +1,11 @@
 import * as React from "react"
-import type {HeadFC, PageProps} from "gatsby"
+import {graphql, type HeadFC, type PageProps} from "gatsby"
 import {Layout} from "../components";
 import {Button, Monitor, Toolbar, Window, WindowContent, WindowHeader} from "react95";
 import './index.scss';
 import {PropsWithChildren, ReactElement} from "react";
+import MarkdownRemarkFrontmatter = Queries.MarkdownRemarkFrontmatter;
+import {IndexReadQueryBuilders} from "../../repository/index-read-query-builders";
 
 
 const HeaderBar: React.FC = (): ReactElement => (<Toolbar>
@@ -30,23 +32,22 @@ const CvWindow: React.FC<CvWindowProps> = (props): ReactElement => (
     </Window>
 );
 
-const IndexPage: React.FC<PageProps> = () => {
+const IndexPage: React.FC<PageProps<Queries.Query>> = ({data}) => {
+    const frontmatter = data?.allMarkdownRemark.edges[0].node.frontmatter;
     return (
         <div className='index-component'>
             <Layout>
-                <CvWindow title="That's Me!">
+                <CvWindow title={frontmatter?.title ?? '---'}>
                     <div className="index-component--introduction">
                         {/* This is necessary to not have the menu overlap with the monitor.
                             Unsure how to ignore that warning or extend Monitor to support className. */}
                         {/* @ts-ignore */}
                         <Monitor className='background-element' backgroundStyles={{
-                            backgroundImage: 'url("./avatar.png")',
+                            backgroundImage: 'url("/assets/avatar.png")',
                             backgroundSize: '80%'
                         }}/>
                         <p>
-                            When you set &quot;resizable&quot; prop, there will be drag handle
-                            in the bottom right corner (but resizing itself must be handled by
-                            you tho!)
+                            {frontmatter?.aboutMe ?? '---'}
                         </p>
                     </div>
                 </CvWindow>
@@ -55,6 +56,21 @@ const IndexPage: React.FC<PageProps> = () => {
     )
 }
 
-export default IndexPage
+export const myQuery = graphql`
+query MyQuery {
+  allMarkdownRemark {
+    edges {
+      node{
+        frontmatter {
+          title
+          aboutMe
+        }
+      }
+    }
+  }
+}
+`;
 
 export const Head: HeadFC = () => <title>Home Page</title>
+
+export default IndexPage
