@@ -1,11 +1,10 @@
-import React, {PropsWithChildren, ReactElement, useEffect} from "react";
+import React, {PropsWithChildren, ReactElement, useEffect, useState} from "react";
 import styled, {createGlobalStyle, ThemeProvider} from 'styled-components';
 import {Frame, styleReset} from 'react95';
-import react95Theme from 'react95/dist/themes/eggplant';
 import '@fontsource/fusion-pixel-12px-monospaced-sc';
 import './layout.scss'
 import {AppMenuBar} from "./app-menu-bar";
-
+import {React95Theme} from "../../utils/React95Theme";
 
 const GlobalStyles = createGlobalStyle`
     ${styleReset}
@@ -32,13 +31,29 @@ const ThemedBackground = styled.div`
 `;
 
 export const Layout: React.FC<PropsWithChildren<{}>> = (props): ReactElement => {
+    const [themeSelection, setThemeSelection] = useState(React95Theme.Original)
+    const [theme, setTheme] = useState<unknown>();
+
+    useEffect(() => {
+        console.log("Switching themes...");
+        loadThemeAsync(themeSelection);
+    }, [themeSelection]);
+
+    async function loadThemeAsync(targetTheme: React95Theme): Promise<void> {
+        const themeName = (React95Theme as any)[targetTheme] ?? 'original';
+
+        console.info("Switching theme to: %s", themeName);
+        const react95Theme = await import(`react95/dist/themes/${themeName}`);
+        setTheme(react95Theme);
+    }
+
     return (<div className='layout-component'>
         <GlobalStyles/>
-        <ThemeProvider theme={react95Theme}>
+        {!!theme && <ThemeProvider theme={theme}>
             <ThemedBackground className='themed-background-component'>
                 <div className="main-frame">
                     <header>
-                        <AppMenuBar/>
+                        <AppMenuBar themePicked={t => setThemeSelection(t)}/>
                     </header>
                     <div className='main-content'>
                         <main>
@@ -53,5 +68,6 @@ export const Layout: React.FC<PropsWithChildren<{}>> = (props): ReactElement => 
                 </div>
             </ThemedBackground>
         </ThemeProvider>
+        }
     </div>);
 }

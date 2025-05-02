@@ -1,4 +1,6 @@
-﻿$mainframe-spacing: 15px;
+﻿@use '/src/global';
+
+$mainframe-spacing: 15px;
 
 * {
   box-sizing: border-box !important;

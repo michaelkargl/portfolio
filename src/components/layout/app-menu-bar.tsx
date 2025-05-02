@@ -1,9 +1,16 @@
 ﻿import React, {ReactElement} from "react";
-import {AppBar, MenuListItem, Separator, TextInput, Toolbar} from "react95";
+import {AppBar, MenuListItem, Separator, Toolbar} from "react95";
 import {MenuButton} from "./menu-button";
 import './app-menu-bar.scss'
+import {ThemePicker} from "./theme-picker";
+import {ALL_THEMES, React95Theme} from "../../utils/React95Theme";
 
-export const AppMenuBar: React.FC = (): ReactElement => {
+
+export interface AppMenuBarProps {
+    themePicked: (theme: React95Theme) => void;
+}
+export const AppMenuBar: React.FC<AppMenuBarProps> = (props): ReactElement => {
+
     // position = relative is important here to have menu and content below stackable instead of the content moving behind the start button
     return (<AppBar position="relative" className="app-bar-component">
         <Toolbar className='app-bar--toolbar' style={{justifyContent: 'space-between'}}>
@@ -26,7 +33,8 @@ export const AppMenuBar: React.FC = (): ReactElement => {
                     </>
                 </MenuButton>
             </div>
-            <TextInput className='app-bar-component--toolbar-search' placeholder='Search...' disabled={true}/>
+
+            <ThemePicker themes={ALL_THEMES} themePicked={props.themePicked} />
         </Toolbar>
     </AppBar>);
 }
