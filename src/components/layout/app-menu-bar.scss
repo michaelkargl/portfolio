@@ -1,0 +1,15 @@
+﻿.app-bar-component {
+  #{&}--toolbar {
+    justify-content: space-between;
+  }
+
+  #{&}--toolbar-content {
+    position: relative;
+    display: inline-block;
+  }
+
+  #{&}--toolbar-search {
+    width: 400px;
+  }
+}
+
