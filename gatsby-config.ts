@@ -15,7 +15,14 @@ const config: GatsbyConfig = {
         "gatsby-plugin-mdx",
         "gatsby-plugin-decap-cms",
         "gatsby-plugin-sass",
-        "gatsby-transformer-remark",
+        {
+            resolve: "gatsby-transformer-remark",
+            options: {
+                plugins: [
+                    `gatsby-remark-autolink-headers`
+                ]
+            }
+        },
         {
             resolve: 'gatsby-plugin-manifest',
             options: {

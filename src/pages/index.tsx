@@ -1,9 +1,10 @@
 import * as React from "react"
 import {graphql, type HeadFC, type PageProps} from "gatsby"
 import {Layout} from "../components";
-import {Button, Monitor, Toolbar, Window, WindowContent, WindowHeader} from "react95";
+import {Button, GroupBox, Monitor, Toolbar, Window, WindowContent, WindowHeader} from "react95";
 import './index.scss';
 import {PropsWithChildren, ReactElement} from "react";
+import {Remark} from "react-remark";
 
 
 const HeaderBar: React.FC = (): ReactElement => (<Toolbar>
@@ -44,9 +45,11 @@ const IndexPage: React.FC<PageProps<Queries.Query>> = ({data}) => {
                             backgroundImage: 'url("/assets/avatar.png")',
                             backgroundSize: '80%'
                         }}/>
-                        <p>
-                            {frontmatter?.aboutMe ?? '---'}
-                        </p>
+                        <GroupBox>
+                            <Remark>
+                                {frontmatter?.aboutMe ?? '---'}
+                            </Remark>
+                        </GroupBox>
                     </div>
                 </CvWindow>
             </Layout>

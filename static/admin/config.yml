@@ -23,5 +23,5 @@ collections:
     folder: src/cms/curriculum
     create: true
     fields:
-      - { name: aboutMe, label: About Me }
       - { name: title, label: Title }
+      - { name: aboutMe, label: About Me, widget: markdown }

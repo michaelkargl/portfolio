@@ -37,10 +37,9 @@ IndexedDB, IDB-KeyVal, React Hooks, Yarn, React95
 1. ```shell
    # install dependencies
    yarn
-   # run local dev server
+   # Run local dev server
+   # This starts both CMS and local server and can take a second
    yarn run start
-   # if you want to access the CMS
-   yarn run serve:cms
    ```
 
 1. Open your browser and visit <http://localhost:8000>
