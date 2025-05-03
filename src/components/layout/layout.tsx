@@ -6,6 +6,15 @@ import './layout.scss'
 import {AppMenuBar} from "./app-menu-bar";
 import {React95Theme} from "../../utils/React95Theme";
 import {ClippyProvider} from "@react95/clippy";
+import {CvSkillParserContext} from "../../contexts/cv-skill-parser-context";
+import {IocModule, IoCSymbol} from "../../ioc";
+import {ICvSkillParser, JsonCvSkillParser} from "../../parser";
+
+const container = new IocModule()
+    .registerCvSkillParser();
+
+// const SKILLS_PARSER = container.resolveRequired<ICvSkillParser>(IoCSymbol.CvSkillParser);
+const SKILLS_PARSER = new JsonCvSkillParser();
 
 const GlobalStyles = createGlobalStyle`
     ${styleReset}
@@ -50,28 +59,30 @@ export const Layout: React.FC<PropsWithChildren<{}>> = (props): ReactElement => 
 
     return (<div className='layout-component'>
         <GlobalStyles/>
-        <ClippyProvider agentName="Clippy">
-            {
-                !!theme && <ThemeProvider theme={theme}>
-                    <ThemedBackground className='themed-background-component'>
-                        <div className="main-frame">
-                            <header>
-                                <AppMenuBar themePicked={t => setThemeSelection(t)}/>
-                            </header>
-                            <div className='main-content'>
-                                <main>
-                                    {props.children}
-                                </main>
+        <CvSkillParserContext.Provider value={{parser: SKILLS_PARSER}}>
+            <ClippyProvider agentName="Clippy">
+                {
+                    !!theme && <ThemeProvider theme={theme}>
+                        <ThemedBackground className='themed-background-component'>
+                            <div className="main-frame">
+                                <header>
+                                    <AppMenuBar themePicked={t => setThemeSelection(t)}/>
+                                </header>
+                                <div className='main-content'>
+                                    <main>
+                                        {props.children}
+                                    </main>
+                                </div>
+                                <footer className='status-bar'>
+                                    <Frame className='footer-status-bar'>
+                                        asdf
+                                    </Frame>
+                                </footer>
                             </div>
-                            <footer className='status-bar'>
-                                <Frame className='footer-status-bar'>
-                                    asdf
-                                </Frame>
-                            </footer>
-                        </div>
-                    </ThemedBackground>
-                </ThemeProvider>
-            }
-        </ClippyProvider>
+                        </ThemedBackground>
+                    </ThemeProvider>
+                }
+            </ClippyProvider>
+        </CvSkillParserContext.Provider>
     </div>);
 }

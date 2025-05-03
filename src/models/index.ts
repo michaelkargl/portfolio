@@ -1,3 +1,3 @@
 ﻿
-export type * from './CvTabs';
+export * from './CvTabs';
 export type * from './CvSkill';
