@@ -4,31 +4,50 @@ on:
     branches:
     - gh-pages
 jobs:
-#  build:
-#    runs-on: ubuntu-22.04
-#    steps:
-#      - uses: actions/checkout@v4
-#      - uses: actions/setup-node@v3.9.1
-#        with:
-#          node-version-file: .nvmrc
-#      - run: npm install --global yarn
-#      - run: yarn install
-#      - run: yarn run build
-#
-#  test:
-#    needs: build
-#    runs-on: ubuntu-22.04
-#    steps:
-#      - uses: actions/checkout@v4
-#      - uses: actions/setup-node@v3.9.1
-#        with:
-#          node-version-file: .nvmrc
-#      - run: npm install --global yarn
-#      - run: yarn install
-#      - run: yarn run test
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3.9.1
+        with:
+          node-version-file: .nvmrc
+      - run: npm install --global yarn
+      - run: yarn install
+      - run: yarn run build
+      # ---------------------------------------
+      - name: Setup Cache for Node Dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            .cache
+            node_modules
+          key: ${{ runner.os }}-gatsby-build-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gatsby-build-
+
+  test:
+    needs: build
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      # -------------------------------------
+      - uses: actions/setup-node@v3.9.1
+        with:
+          node-version-file: .nvmrc
+      # -------------------------------------
+      - uses: actions/cache@v4
+        with:
+          path: |
+            .cache
+            node_modules
+          key: ${{ runner.os }}-gatsby-build-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gatsby-build-
+      # -------------------------------------
+      - run: yarn run test
 
   deploy:
-#    needs: test
+    needs: test
     runs-on: ubuntu-22.04
     permissions:
       contents: write
@@ -36,21 +55,42 @@ jobs:
       id-token: write
     environment:
       name: production
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.myDeployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - name: Checking out Repository
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/setup-node@v3.9.1
+      # -------------------------------------
+      - name: Setting up Node
+        uses: actions/setup-node@v3.9.1
         with:
           node-version-file: .nvmrc
-      - run: npm install --global yarn
-      - run: yarn install
-      - run: yarn build
-      - uses: actions/configure-pages@v4
+          cache: yarn
+      # -------------------------------------
+      - name: Caching Node-Packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            .cache
+            node_modules
+          key: ${{ runner.os }}-gatsby-build-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gatsby-build-
+      # -------------------------------------
+      - name: Configuring Github-Pages
+        uses: actions/configure-pages@v4
         with:
           static_site_generator: gatsby
-      - uses: actions/upload-pages-artifact@v3
+      # -------------------------------------
+      - name: Building Code for Publishing
+        run: yarn run build
+      # -------------------------------------
+      - name: Uploading Public Folder
+        uses: actions/upload-pages-artifact@v3
         with:
           path: './public'
-      - uses: actions/deploy-pages@v4
+      # -------------------------------------
+      - name: Deployment to Pages
+        id: myDeployment
+        uses: actions/deploy-pages@v4
