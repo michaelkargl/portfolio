@@ -1,11 +1,10 @@
-﻿
-backend:
+﻿backend:
   name: git-gateway
 
 local_backend:
   url: http://localhost:8082/api/v1
   # when accessing the local site from a host other than 'localhost' or '127.0.0.1'
-  allowed_hosts: ['192.168.0.1']
+  allowed_hosts: [ '192.168.0.1' ]
 
 #backend:
 #  name: github
@@ -25,3 +24,5 @@ collections:
     fields:
       - { name: title, label: Title }
       - { name: aboutMe, label: About Me, widget: markdown }
+      - { name: skills, label: Skills, widget: text }
+      - { name: links, label: Links, widget: markdown }
