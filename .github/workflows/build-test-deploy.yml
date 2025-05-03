@@ -1,5 +1,8 @@
 ﻿name: build-test-deploy
-on: push
+on:
+  push:
+    branches:
+    - gh-pages
 jobs:
 #  build:
 #    runs-on: ubuntu-22.04
