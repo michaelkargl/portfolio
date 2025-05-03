@@ -23,7 +23,7 @@
     "deploy": "pwsh ./scripts/deploy.ps1",
     "deploy:only": "yarn run deploy -NoBuild",
     "typecheck": "tsc --noEmit",
-    "test": "yarn run test:frontend"
+    "test": "yarn run jest"
   },
   "dependencies": {
     "@fontsource/fusion-pixel-12px-monospaced-sc": "^5.2.5",

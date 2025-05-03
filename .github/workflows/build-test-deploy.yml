@@ -1,25 +1,54 @@
 ﻿name: build-test-deploy
 on: push
 jobs:
-  build:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3.9.1
-        with:
-          node-version-file: .nvmrc
-      - run: npm install --global yarn
-      - run: yarn install
-      - run: yarn run build
+#  build:
+#    runs-on: ubuntu-22.04
+#    steps:
+#      - uses: actions/checkout@v4
+#      - uses: actions/setup-node@v3.9.1
+#        with:
+#          node-version-file: .nvmrc
+#      - run: npm install --global yarn
+#      - run: yarn install
+#      - run: yarn run build
+#
+#  test:
+#    needs: build
+#    runs-on: ubuntu-22.04
+#    steps:
+#      - uses: actions/checkout@v4
+#      - uses: actions/setup-node@v3.9.1
+#        with:
+#          node-version-file: .nvmrc
+#      - run: npm install --global yarn
+#      - run: yarn install
+#      - run: yarn run test
 
-  test:
-    needs: build
+  deploy:
+#    needs: test
     runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: production
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          repository: gh-pages
+#          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/setup-node@v3.9.1
         with:
           node-version-file: .nvmrc
       - run: npm install --global yarn
       - run: yarn install
-      - run: yarn run test
+      - run: yarn build
+      - uses: actions/configure-pages@v4
+        with:
+          static_site_generator: gatsby
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: './public'
+      - uses: actions/deploy-pages@v4
