@@ -1,0 +1,25 @@
+﻿name: build-test-deploy
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3.9.1
+        with:
+          node-version-file: .nvmrc
+      - run: npm install --global yarn
+      - run: yarn install
+      - run: yarn run build
+
+  test:
+    needs: build
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3.9.1
+        with:
+          node-version-file: .nvmrc
+      - run: npm install --global yarn
+      - run: yarn install
+      - run: yarn run test

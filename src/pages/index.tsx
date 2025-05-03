@@ -4,8 +4,6 @@ import {Layout} from "../components";
 import {Button, Monitor, Toolbar, Window, WindowContent, WindowHeader} from "react95";
 import './index.scss';
 import {PropsWithChildren, ReactElement} from "react";
-import MarkdownRemarkFrontmatter = Queries.MarkdownRemarkFrontmatter;
-import {IndexReadQueryBuilders} from "../../repository/index-read-query-builders";
 
 
 const HeaderBar: React.FC = (): ReactElement => (<Toolbar>
