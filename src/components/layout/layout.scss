@@ -43,3 +43,16 @@ footer, .footer-status-bar {
   // move the status bar content the same amount off the border as the main content vor visual effect
   padding-left: $mainframe-spacing
 }
+
+a {
+  color: blue;
+
+  &:visited {
+    color: blue;
+  }
+
+  &:hover {
+    text-decoration: underline;
+    color: darkblue;
+  }
+}
