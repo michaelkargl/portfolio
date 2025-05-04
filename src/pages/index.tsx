@@ -1,12 +1,10 @@
 import * as React from "react"
-import {PropsWithChildren, ReactElement, useEffect} from "react"
-import {graphql, type HeadFC, type PageProps} from "gatsby"
+import {graphql, type PageProps} from "gatsby"
 import {Layout} from "../components";
-import {Button, Monitor, ProgressBar, Tab, TabBody, Tabs, Toolbar, Window, WindowContent, WindowHeader} from "react95";
+import {Monitor, Tab, TabBody, Tabs} from "react95";
 import './index.scss';
 import {Remark} from "react-remark";
-import {CvSkill, CvTabs} from "../models";
-import {CvSkillParserContext} from "../contexts/cv-skill-parser-context";
+import {CvTabs} from "../models";
 import {CvWindow} from "../components/curriculum/cv-window";
 import { SkillsView } from "../components/curriculum/skills-view";
 

@@ -1,13 +1,12 @@
 # Portfolio
 
-
 ## Tags
 
 <!-- Languages, Frameworks, Libraries, Hosting Platforms, CI/CD, IaC, Scripting languages -->
 
 Gatsby, GatsbyJS, DecapCMS, ReactJS, React, JavaScript, HTML, CSS,
 GitHab, GiHub Pages, Typescript, Luxon, Moment.js, PWA, IDB,
-IndexedDB, IDB-KeyVal, React Hooks, Yarn, React95
+IndexedDB, IDB-KeyVal, React Hooks, Yarn, React95, @include-media
 
 ## 🍎 Requirements
 
@@ -51,22 +50,23 @@ IndexedDB, IDB-KeyVal, React Hooks, Yarn, React95
 ## CMS
 
 The project uses a CMS to form its content. To be able to write files to the local git repository
-it needs an API to connect to. This api can be started by doing 
+it needs an API to connect to. This api is started automatically with
 
 ```shell
-yarn run serve:cms
+yarn run start
 ```
 
-> Note: Sometimes the auto login doesn't work. In which case do a page refresh.
-> It should automatically open the CMS admin panel.
+together with the development server.
+
+> Note: With the local setup, there isn't any login necessary but sometimes
+> something goes wrong and you land on a login page. Sometimes a simple page reload
+> work, othertimes you might have to re-run. Safest way is to run the cms separately.
 
 ## Deploy
 
-Deployment is done two-fold
+Deployment is setup to happen on every push to `gh-pages`. Try out if the application
+looks good by serving your public folder first.
 
-1. Automatically on push to `gh-pages` branch
-2. Manually triggered using
-   ```shell
-   yarn run build
-   yarn run deploy
-   ```
+```
+npm run serve
+```

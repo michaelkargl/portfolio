@@ -27,5 +27,16 @@ skills: |-
       { "name": "Domain-driven Design", "percent": 64 },
       { "name": "Python", "percent": 44 }
   ]
-links: Links
+links: >-
+  * • [GitLab](https://gitlab.com/michaelkargl) (moving to github)
+
+  * • [GitHub](https://github.com/michaelkargl)
+
+  * • [LinkedIn](https://www.linkedin.com/in/osamichaelkargl)
+
+
+  - - -
+
+
+  * • [Photography Portfolio](https://ohsnaparts.gitlab.io/osasoftworks/portfolio/osaportfolio/)
 ---

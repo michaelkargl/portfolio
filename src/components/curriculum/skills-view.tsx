@@ -15,7 +15,7 @@ export const SkillsView: React.FC<SkillsViewProps> = (props): ReactElement => {
         setSkills(sortedSkills);
     }, []);
 
-    return (<ul>
+    return (<div className='skills-view--component'>
         {
             skills?.map((skill, index) => (
                 <div key={index}>
@@ -25,5 +25,5 @@ export const SkillsView: React.FC<SkillsViewProps> = (props): ReactElement => {
                 </div>
             ))
         }
-    </ul>);
+    </div>);
 }
