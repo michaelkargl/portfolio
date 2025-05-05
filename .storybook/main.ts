@@ -5,7 +5,7 @@ const config: StorybookConfig = {
         "../src/**/*.mdx",
         "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
     ],
-    "staticDirs": ["../public", "../static"],
+    "staticDirs": ["../static"],
     "addons": [
         "@storybook/addon-webpack5-compiler-swc",
         "@storybook/addon-essentials",

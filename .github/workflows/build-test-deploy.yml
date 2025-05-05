@@ -13,7 +13,10 @@ jobs:
           node-version-file: .nvmrc
       - run: npm install --global yarn
       - run: yarn install
-      - run: yarn run build
+      - run: |
+          node -e "console.log('Node heap_size_limit: %s', v8.getHeapStatistics().heap_size_limit/(1024*1024))"
+          yarn run build
+          yarn run build:storybook
       # ---------------------------------------
       - name: Setup Cache for Node Dependencies
         uses: actions/cache@v4
@@ -24,6 +27,13 @@ jobs:
           key: ${{ runner.os }}-gatsby-build-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-gatsby-build-
+      - name: Setup Cache for Binaries
+        uses: actions/cache@v4
+        with:
+          path: |
+            public
+            storybook-static
+          key: ${{ runner.os }}-gatsby-build-${{ hashFiles('public/**', 'storybook-static/**') }}
 
   test:
     needs: build
@@ -77,6 +87,13 @@ jobs:
           key: ${{ runner.os }}-gatsby-build-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-gatsby-build-
+      - name: Restore Binaries cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            public
+            storybook-static
+          key: ${{ runner.os }}-gatsby-build-${{ hashFiles('public/**', 'storybook-static/**') }}
       # -------------------------------------
       - name: Configuring Github-Pages
         uses: actions/configure-pages@v4
@@ -85,8 +102,6 @@ jobs:
       # -------------------------------------
       - name: Building Code for Publishing
         run: |
-          yarn run build
-          yarn run build:storybook
           mv storybook-static public/storybook
       # -------------------------------------
       - name: Uploading Public Folder
