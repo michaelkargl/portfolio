@@ -16,17 +16,15 @@ Write-Host '1️⃣ PRE-DEPLOY'
 Clear-GithubPagesCache -ProjectRoot $ProjectRoot
 
 $BuildPath = Join-Path $ProjectRoot $BuildDirName
-$BuildExists = Test-Path $BuildPath
-if (-not $NoBuild -or -not $BuildExists) {
-    Write-Host '2️⃣ BUILD'
-    Write-Host '🏗️ Building the project...'
-    Remove-Item -Recurse -Force $BuildPath -Verbose -ErrorAction SilentlyContinue
-    yarn run build
-}
 
+Write-Host '2️⃣ BUILD'
+Write-Host '🏗️ Building the project...'
+Remove-Item -Recurse -Force $BuildPath -Verbose -ErrorAction SilentlyContinue
+yarn run build
+yarn run build:storybook
+mv 'storybook-static' 'public/storybook'
 
 Write-Host '3️⃣ DEPLOY'
-
 Invoke-InPath -Path $ProjectRoot -ScriptBlock {
     Write-Host '🚢️ Deploying to gh-pages...'
     # deployment is done from the root (unfortunately theres no option to change that)

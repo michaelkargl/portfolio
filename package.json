@@ -25,7 +25,7 @@
     "typecheck": "tsc --noEmit",
     "test": "yarn run jest",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build:storybook": "storybook build"
   },
   "dependencies": {
     "@fontsource/fusion-pixel-12px-monospaced-sc": "^5.2.5",

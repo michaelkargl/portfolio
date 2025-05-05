@@ -84,7 +84,10 @@ jobs:
           static_site_generator: gatsby
       # -------------------------------------
       - name: Building Code for Publishing
-        run: yarn run build
+        run: |
+          yarn run build
+          yarn run build:storybook
+          mv storybook-static public/storybook
       # -------------------------------------
       - name: Uploading Public Folder
         uses: actions/upload-pages-artifact@v3
