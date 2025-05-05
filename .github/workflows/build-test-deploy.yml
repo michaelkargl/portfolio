@@ -11,12 +11,6 @@ jobs:
       - uses: actions/setup-node@v3.9.1
         with:
           node-version-file: .nvmrc
-      - run: npm install --global yarn
-      - run: yarn install
-      - run: |
-          node -e "console.log('Node heap_size_limit: %s', v8.getHeapStatistics().heap_size_limit/(1024*1024))"
-          yarn run build
-          yarn run build:storybook
       # ---------------------------------------
       - name: Setup Cache for Node Dependencies
         uses: actions/cache@v4
@@ -34,6 +28,13 @@ jobs:
             public
             storybook-static
           key: ${{ runner.os }}-gatsby-build-${{ hashFiles('public/**', 'storybook-static/**') }}
+      - run: npm install --global yarn
+      - run: yarn install
+      - run: |
+          node -e "console.log('Node heap_size_limit: %s', v8.getHeapStatistics().heap_size_limit/(1024*1024))"
+          export NODE_OPTIONS=--max-old-space-size=5048
+          yarn run build
+          yarn run build:storybook
 
   test:
     needs: build
