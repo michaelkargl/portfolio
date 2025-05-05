@@ -1,5 +1,7 @@
 # Portfolio
 
+[![build-test-deploy](https://github.com/michaelkargl/portfolio/actions/workflows/build-test-deploy.yml/badge.svg)](https://github.com/michaelkargl/portfolio/actions/workflows/build-test-deploy.yml)
+
 ## Tags
 
 <!-- Languages, Frameworks, Libraries, Hosting Platforms, CI/CD, IaC, Scripting languages -->
@@ -7,6 +9,13 @@
 Gatsby, GatsbyJS, DecapCMS, ReactJS, React, JavaScript, HTML, CSS,
 GitHab, GiHub Pages, Typescript, Luxon, Moment.js, PWA, IDB,
 IndexedDB, IDB-KeyVal, React Hooks, Yarn, React95, @include-media
+
+| Service    | DEV                               | PROD                                                 |
+|------------|-----------------------------------|------------------------------------------------------|
+| Portfolio  | <http://localhost:8000>           | <https://michaelkargl.github.io/portfolio/>          |
+| CMS        | <http://localhost:8000/admin>     | <https://michaelkargl.github.io/portfolio/admin>     |
+| Storybook  | <http://localhost:6006>           | <https://michaelkargl.github.io/portfolio/storybook> |
+| Repository | <https://github.com/michaelkargl> | <https://github.com/michaelkargl>                    |
 
 ## 🍎 Requirements
 
@@ -26,9 +35,10 @@ IndexedDB, IDB-KeyVal, React Hooks, Yarn, React95, @include-media
        ```
 
 [pwsh-installation]: https://learn.microsoft.com/de-de/powershell/scripting/install/installing-powershell?view=powershell-7.5
-[nvm]: https://github.com/nvm-sh/nvm
-[nvm-windows]: https://github.com/coreybutler/nvm-windows
 
+[nvm]: https://github.com/nvm-sh/nvm
+
+[nvm-windows]: https://github.com/coreybutler/nvm-windows
 
 ## ⌨️ Quick start
 
@@ -43,9 +53,10 @@ IndexedDB, IDB-KeyVal, React Hooks, Yarn, React95, @include-media
 
 1. Open your browser and visit <http://localhost:8000>
 1. To access the CMS admin panel, visit <http://localhost:8000/admin>
+1. To access Storybook, visit <http://localhost:6006>
 
-> If the URLs wont work, please check configuration for the right port or the URL printed in the console after serving
-> it locally.
+> If the URLs don't work, please check the configuration for the right ports or the URLs printed
+> in the console after serving it locally.
 
 ## CMS
 
@@ -71,9 +82,21 @@ looks good by serving your public folder first.
 npm run serve
 ```
 
+## Storybook
+
+To ease development, you can take use of storybook. It is deployed under `/storybook`.
+
+```shell
+# runs the storybook instance side-by side
+yarn run start
+
+# run explicitly
+yarn run storybook
+```
+
 ## On NPX / YPX
 
-Since we are using `yarn`, npx will not utilize the yarn cache. There are 
+Since we are using `yarn`, npx will not utilize the yarn cache. There are
 two options
 
 1. Use `npx` and have 2 caches
