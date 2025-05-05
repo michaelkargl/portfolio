@@ -14,7 +14,7 @@
     "jest": "yarn run --offline ynpx jest --passWithNoTests",
     "gh-pages": "npx ynpx --prefer-offline gh-pages",
     "build": "yarn run --offline gatsby build --prefix-paths",
-    "serve": "yarn run --offline gatsby serve --prefix-paths",
+    "serve": "yarn run build && yarn run --offline gatsby serve",
     "serve:cms": "yarn run ynpx decap-server",
     "develop": "yarn run --offline concurrently \"yarn run gatsby develop\" \"yarn run serve:cms\"",
     "start": "yarn run --offline gatsby develop",
