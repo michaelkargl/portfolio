@@ -4,7 +4,7 @@ import {Window, WindowContent, WindowHeader} from "react95";
 import { HeaderBar } from "./header-bar";
 
 type CvWindowProps = PropsWithChildren<{ title: string }>
-export const CvWindow: React.FC<CvWindowProps> = (props): ReactElement => (
+export const Curriculum: React.FC<CvWindowProps> = (props): ReactElement => (
     <Window className='cv-window--component'>
         <WindowHeader><span>{props.title}</span></WindowHeader>
         <HeaderBar/>

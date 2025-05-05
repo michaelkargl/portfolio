@@ -5,7 +5,7 @@ import {Monitor, Tab, TabBody, Tabs} from "react95";
 import './index.scss';
 import {Remark} from "react-remark";
 import {CvTabs} from "../models";
-import {CvWindow} from "../components/curriculum/cv-window";
+import {Curriculum} from "../components/curriculum/curriculum";
 import { SkillsView } from "../components/curriculum/skills-view";
 
 
@@ -16,7 +16,7 @@ const IndexPage: React.FC<PageProps<Queries.Query>> = ({data}) => {
     return (
         <div className='index-component'>
             <Layout>
-                <CvWindow title={frontmatter?.title ?? '---'}>
+                <Curriculum title={frontmatter?.title ?? '---'}>
                     <div className="index-component--introduction">
                         {/* This is necessary to not have the menu overlap with the monitor.
                             Unsure how to ignore that warning or extend Monitor to support className. */}
@@ -43,7 +43,7 @@ const IndexPage: React.FC<PageProps<Queries.Query>> = ({data}) => {
                             )}
                         </TabBody>
                     </div>
-                </CvWindow>
+                </Curriculum>
             </Layout>
         </div>
     )
