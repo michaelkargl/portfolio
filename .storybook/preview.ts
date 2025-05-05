@@ -42,5 +42,5 @@ function configureGatsbySupport() {
 }
 
 
-configureGatsbySupport();
+// configureGatsbySupport();
 export default preview;

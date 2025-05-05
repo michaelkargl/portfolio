@@ -1,15 +1,49 @@
-﻿import {PropsWithChildren, ReactElement} from "react";
-import * as React from "react";
-import {Window, WindowContent, WindowHeader} from "react95";
-import { HeaderBar } from "./header-bar";
+﻿import * as React from "react";
+import {Monitor, Tab, TabBody, Tabs} from "react95";
+import {CvTabs} from "../../models";
+import {Remark} from "react-remark";
+import {SkillsView} from "./skills-view";
+import {CvWindow} from "./cvWindow";
 
-type CvWindowProps = PropsWithChildren<{ title: string }>
-export const Curriculum: React.FC<CvWindowProps> = (props): ReactElement => (
-    <Window className='cv-window--component'>
-        <WindowHeader><span>{props.title}</span></WindowHeader>
-        <HeaderBar/>
-        <WindowContent>
-            {props.children}
-        </WindowContent>
-    </Window>
-);
+
+export interface CurriculumProps {
+    title: string;
+    aboutMe: string;
+    skillsJson: string;
+    links: string;
+    monitorImage: string;
+}
+
+export const Curriculum: React.FC<CurriculumProps> = (props): React.ReactElement => {
+    const [activeTab, setActiveTab] = React.useState<number>(0);
+    return (
+        <CvWindow title={props.title}>
+            <div className="index-component--introduction">
+                {/* This is necessary to not have the menu overlap with the monitor.
+                                Unsure how to ignore that warning or extend Monitor to support className. */}
+                {/* @ts-ignore */}
+                <Monitor className='background-element' backgroundStyles={{
+                    backgroundImage: `url("${props.monitorImage}")`,
+                    backgroundSize: '80%'
+                }}/>
+                <Tabs value={activeTab} onChange={setActiveTab}>
+                    <Tab value={CvTabs.AboutMe}>About Me</Tab>
+                    <Tab value={CvTabs.Skills}>Skills</Tab>
+                    <Tab value={CvTabs.Links}>Links</Tab>
+                </Tabs>
+                <TabBody>
+
+                    {activeTab === CvTabs.AboutMe && (
+                        <Remark>{props.aboutMe}</Remark>
+                    )}
+                    {activeTab === CvTabs.Skills && (
+                        <SkillsView skillsJson={props.skillsJson}/>
+                    )}
+                    {activeTab === CvTabs.Links && (
+                        <Remark>{props.links}</Remark>
+                    )}
+                </TabBody>
+            </div>
+        </CvWindow>
+    );
+};

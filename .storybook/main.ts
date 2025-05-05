@@ -1,25 +1,78 @@
-import type { StorybookConfig } from '@storybook/react-webpack5';
-import React from "react";
+import type {StorybookConfig} from '@storybook/react-webpack5';
 
 const config: StorybookConfig = {
-  "stories": [
-    "../src/**/*.mdx",
-    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
-  ],
-  "addons": [
-    "@storybook/addon-webpack5-compiler-swc",
-    "@storybook/addon-essentials",
-    "@storybook/addon-onboarding",
-    "@storybook/addon-interactions"
-  ],
-  "framework": {
-    "name": "@storybook/react-webpack5",
-    "options": {}
-  },
-  "webpackFinal": async (config, options)=> {
-    return await setupGatsbySupport(config);
-  }
+    "stories": [
+        "../src/**/*.mdx",
+        "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
+    ],
+    "staticDirs": ["../public", "../static"],
+    "addons": [
+        "@storybook/addon-webpack5-compiler-swc",
+        "@storybook/addon-essentials",
+        "@storybook/addon-onboarding",
+        "@storybook/addon-interactions",
+        "@storybook/addon-styling-webpack",
+        ({
+            name: "@storybook/addon-styling-webpack",
+
+            options: {
+                rules: [{
+                    test: /\.css$/,
+                    sideEffects: true,
+                    use: [
+                        require.resolve("style-loader"),
+                        {
+                            loader: require.resolve("css-loader"),
+                            options: {},
+                        },
+                    ],
+                }, {
+                    test: /\.s[ac]ss$/,
+                    sideEffects: true,
+                    use: [
+                        require.resolve("style-loader"),
+                        {
+                            loader: require.resolve("css-loader"),
+                            options: {
+
+                                importLoaders: 2,
+                            },
+                        },
+                        require.resolve("resolve-url-loader"),
+                        {
+                            loader: require.resolve("sass-loader"),
+                            options: {
+                                // Want to add more Sass options? Read more here: https://webpack.js.org/loaders/sass-loader/#options
+                                implementation: require.resolve("sass"),
+                                sourceMap: true,
+                                sassOptions: {},
+                            },
+                        },
+                    ],
+                },],
+            }
+        })
+    ],
+    "framework": {
+        "name": "@storybook/react-webpack5",
+        "options": {}
+    },
+    "webpackFinal": async (config, options) => {
+        // commented out due to it causing storybook to break with "React not configured" errors
+        // return await setupGatsbySupport(config);
+        return await ignoreTypescriptTypeDefinitionFiles(config);
+    }
 };
+
+
+async function ignoreTypescriptTypeDefinitionFiles(config: any): Promise<any> {
+    // Exclude .d.ts files from being processed
+    config.module.rules.push({
+        test: /\.d\.ts$/,
+        use: 'ignore-loader',
+    });
+    return Promise.resolve(config);
+}
 
 /**
  * Setting up gatsby support by configuring webpack according to the docs
@@ -28,25 +81,27 @@ const config: StorybookConfig = {
  * @see https://www.gatsbyjs.com/docs/how-to/testing/visual-testing-with-storybook/
  */
 async function setupGatsbySupport(config: any): Promise<any> {
-  // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
-  let rule = config.module.rules[0];
-  rule.exclude = [/node_modules\/(?!(gatsby|gatsby-script)\/)/]
+    // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
+    let rule = config.module.rules[0];
+    rule.exclude = [/node_modules\/(?!(gatsby|gatsby-script)\/)/]
 
-  // Use correct react-dom depending on React version.
-  if (parseInt(React.version) <= 18) {
-    config.externals = ["react-dom/client"];
-  }
+    // caused: 'React not defined' errors
+    // Use correct react-dom depending on React version.
+    // if (parseInt(React.version) <= 18) {
+    //   config.externals = ["react-dom/client"];
+    // }
 
-  // Remove core-js to prevent issues with Storybook
-  rule.exclude= [/core-js/]
+    // Remove core-js to prevent issues with Storybook
+    rule.exclude = [/core-js/]
 
-  // Use babel-plugin-remove-graphql-queries to remove static queries from components when rendering in storybook
-  // rule.use[0].options.plugins.push(
-  //     require.resolve("babel-plugin-remove-graphql-queries")
-  // )
+    // caused: 'plugins does not exist on options' error
+    // Use babel-plugin-remove-graphql-queries to remove static queries from components when rendering in storybook
+    // rule.use[0].options.plugins.push(
+    //     require.resolve("babel-plugin-remove-graphql-queries")
+    // )
 
-  config.resolve.mainFields=["browser", "module", "main"]
-  return config
+    config.resolve.mainFields = ["browser", "module", "main"]
+    return config
 }
 
 export default config;

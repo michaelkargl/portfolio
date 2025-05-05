@@ -70,3 +70,18 @@ looks good by serving your public folder first.
 ```
 npm run serve
 ```
+
+## On NPX / YPX
+
+Since we are using `yarn`, npx will not utilize the yarn cache. There are 
+two options
+
+1. Use `npx` and have 2 caches
+2. Use `ynpx`
+
+For the secondd choice, there's a `package.json` command
+
+```sh
+# Example npx invocation with yarn
+yarn run ynpx create-react-app
+```

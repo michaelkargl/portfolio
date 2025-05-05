@@ -13,8 +13,8 @@ import {ICvSkillParser, JsonCvSkillParser} from "../../parser";
 const container = new IocModule()
     .registerCvSkillParser();
 
-// const SKILLS_PARSER = container.resolveRequired<ICvSkillParser>(IoCSymbol.CvSkillParser);
-const SKILLS_PARSER = new JsonCvSkillParser();
+const SKILLS_PARSER = container.resolveRequired<ICvSkillParser>(IoCSymbol.CvSkillParser);
+//const SKILLS_PARSER = new JsonCvSkillParser();
 
 const GlobalStyles = createGlobalStyle`
     ${styleReset}
