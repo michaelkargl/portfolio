@@ -7,16 +7,17 @@ import {Curriculum} from "../components/curriculum/curriculum";
 
 const IndexPage: React.FC<PageProps<Queries.Query>> = ({data}) => {
     const [activeTab, setActiveTab] = React.useState<number>(0);
-    const frontmatter = data?.allMarkdownRemark.edges[0]?.node.frontmatter;
+    const frontMatter = data?.allMarkdownRemark.edges[0]?.node.frontmatter;
 
     return (
         <div className='index-component'>
             <Layout>
                 <Curriculum
-                    title={frontmatter?.title ?? '---'}
-                    links={frontmatter?.links ?? ''}
-                    skillsJson={frontmatter?.skills ?? '[]'}
-                    aboutMe={frontmatter?.aboutMe ?? ''}
+                    title={frontMatter?.title ?? '---'}
+                    links={frontMatter?.links ?? ''}
+                    skillsByTimeJson={frontMatter?.skillsByTime ?? '[]'}
+                    skillsByScoreJson={frontMatter?.skillsByScore ?? '[]'}
+                    aboutMe={frontMatter?.aboutMe ?? ''}
                     monitorImage="/assets/avatar.png"/>
             </Layout>
         </div>
@@ -31,7 +32,8 @@ export const myQuery = graphql`
             frontmatter {
               title
               aboutMe
-              skills
+              skillsByTime
+              skillsByScore
               links
             }
           }

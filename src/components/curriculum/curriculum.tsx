@@ -1,5 +1,5 @@
 ﻿import * as React from "react";
-import {Monitor, Tab, TabBody, Tabs} from "react95";
+import {GroupBox, Monitor, Tab, TabBody, Tabs} from "react95";
 import {CvTabs} from "../../models";
 import {Remark} from "react-remark";
 import {SkillsView} from "./skills-view";
@@ -9,7 +9,8 @@ import {CvWindow} from "./cvWindow";
 export interface CurriculumProps {
     title: string;
     aboutMe: string;
-    skillsJson: string;
+    skillsByTimeJson: string;
+    skillsByScoreJson: string;
     links: string;
     monitorImage: string;
 }
@@ -32,16 +33,24 @@ export const Curriculum: React.FC<CurriculumProps> = (props): React.ReactElement
                     <Tab value={CvTabs.Links}>Links</Tab>
                 </Tabs>
                 <TabBody>
-
-                    {activeTab === CvTabs.AboutMe && (
-                        <Remark>{props.aboutMe}</Remark>
-                    )}
-                    {activeTab === CvTabs.Skills && (
-                        <SkillsView skillsJson={props.skillsJson}/>
-                    )}
-                    {activeTab === CvTabs.Links && (
-                        <Remark>{props.links}</Remark>
-                    )}
+                    <GroupBox>
+                        {activeTab === CvTabs.AboutMe && (
+                            <Remark>{props.aboutMe}</Remark>
+                        )}
+                        {activeTab === CvTabs.Skills && (
+                            <>
+                                <GroupBox label='Timed Skills'>
+                                    <SkillsView skillsJson={props.skillsByTimeJson}/>
+                                </GroupBox>
+                                <GroupBox label='Scored Skills'>
+                                    <SkillsView skillsJson={props.skillsByScoreJson}/>
+                                </GroupBox>
+                            </>
+                        )}
+                        {activeTab === CvTabs.Links && (
+                            <Remark>{props.links}</Remark>
+                        )}
+                    </GroupBox>
                 </TabBody>
             </div>
         </CvWindow>

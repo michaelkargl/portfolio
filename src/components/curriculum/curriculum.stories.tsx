@@ -17,7 +17,8 @@ export const CurriculumStory : Story = {
         title: "Curriculum",
         links: "Links",
         aboutMe: "About me",
-        skillsJson: '[{ "name": "C", "percent": 67 }]',
+        skillsByTimeJson: '[{ "name": "C", "percent": 67 }]',
+        skillsByScoreJson: '[{ "name": "Backend", "percent": 67 }]',
         monitorImage: "./assets/avatar.png"
     }
 }

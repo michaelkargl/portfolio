@@ -6,3 +6,40 @@
 .background-element {
   z-index: 0;
 }
+
+
+@mixin font-size($hLevel) {
+  font-size: $hLevel;
+}
+
+@mixin heading($hLevel) {
+  $spacingScalingFactor: 0.70;
+
+  font-size: $hLevel;
+  padding: ($hLevel * $spacingScalingFactor) 0;
+}
+
+// https://tailwindcss. com/docs/font-size
+h1 {
+  @include heading(1.5rem);
+}
+
+h2 {
+  @include heading(1.25rem);
+}
+
+h3 {
+  @include heading(1.125rem);
+}
+
+h4 {
+  @include heading(1rem);
+}
+
+h5 {
+  @include heading(0.875rem);
+}
+
+h6 {
+  @include heading(0.75rem);
+}
