@@ -4,6 +4,7 @@ import {MenuButton} from "./menu-button";
 import './app-menu-bar.scss'
 import {ThemePicker} from "./theme-picker";
 import {ALL_THEMES, React95Theme} from "../../utils/React95Theme";
+import {Link} from "gatsby";
 
 
 export interface AppMenuBarProps {
@@ -19,14 +20,19 @@ export const AppMenuBar: React.FC<AppMenuBarProps> = (props): ReactElement => {
             <div className='app-bar-component--toolbar-content'>
                 <MenuButton>
                     <>
-                        <MenuListItem>
-                            <span role='img' aria-label='👨‍💻'>👨‍💻</span>
-                            Profile
-                        </MenuListItem>
-                        <MenuListItem>
-                            <span role='img' aria-label='📁'>📁</span>
-                            &nbsp; My account
-                        </MenuListItem>
+                        <Link to='/'>
+                            <MenuListItem>
+                                <span role='img' aria-label='🏠'>🏠</span>
+                                Home
+                            </MenuListItem>
+                        </Link>
+
+                        <Link to='/paint'>
+                            <MenuListItem>
+                                <span role='img' aria-label='🎨'>🎨</span>
+                                Paint
+                            </MenuListItem>
+                        </Link>
                         <Separator/>
                         <MenuListItem disabled>
                             <span role='img' aria-label='🔙'>🔙</span>

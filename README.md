@@ -108,3 +108,16 @@ For the secondd choice, there's a `package.json` command
 # Example npx invocation with yarn
 yarn run ynpx create-react-app
 ```
+
+## Troubleshooting
+
+### `yarn run start` runs into errors
+
+I found that, when `Ctrl+C`ing out, the servers don't fully stop. This blocks the necessary ports and causes lots of
+unnecessary errors.
+
+```powrshell
+Get-Process node | Stop-Process
+```
+
+usually fixes these errors.

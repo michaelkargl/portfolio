@@ -59,13 +59,37 @@ const config: StorybookConfig = {
     },
     "webpackFinal": async (config, options) => {
         // commented out due to it causing storybook to break with "React not configured" errors
-        // return await setupGatsbySupport(config);
-        return await ignoreTypescriptTypeDefinitionFiles(config);
+        config = await setupGatsbySupport(config);
+        config = await ignoreTypescriptTypeDefinitionFiles(config);
+        config = await registerStubs(config);
+        return config;
     }
 };
 
 
+/**
+ * Registers stubs to be used instead of the real tag
+ * (basically: use <LinkMock> instead of <Link>)
+ * @param config the webpack configuration object
+ * @return an updated webpack configuration object
+ */
+async function registerStubs(config: any): Promise<any> {
+    config!.resolve!.alias = {
+        ...config!.resolve!.alias,
+        gatsby: require.resolve('./gatsby-stubs.jsx')
+    };
+    return config;
+}
+
+/**
+ * Webpack doesn't know what to do with typescript type definitions.
+ * This function regsiters rules to ignore them in packaging.
+ * @param config the webpack configuration object
+ * @return the updated configuration object
+ */
 async function ignoreTypescriptTypeDefinitionFiles(config: any): Promise<any> {
+    config = {...(config ?? {})}
+
     // Exclude .d.ts files from being processed
     config.module.rules.push({
         test: /\.d\.ts$/,
@@ -99,6 +123,12 @@ async function setupGatsbySupport(config: any): Promise<any> {
     // rule.use[0].options.plugins.push(
     //     require.resolve("babel-plugin-remove-graphql-queries")
     // )
+
+    // register gatsby stubs in case some elements can not be found
+
+    config.resolve ??= {}
+    config.resolve.alias ??= {}
+    config.resolve.alias.gatsby = require.resolve('./gatsby-stubs.jsx')
 
     config.resolve.mainFields = ["browser", "module", "main"]
     return config
