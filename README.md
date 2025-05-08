@@ -67,6 +67,31 @@ it needs an API to connect to. This api is started automatically with
 yarn run start
 ```
 
+### Adding new entries
+
+Decap CMS handles everything in one [config.yml](./static/admin/config.yml) file.
+Add here all the [Collections and Fields](https://decapcms.org/docs/configure-decap-cms/) as needed and 
+access them through the graphql interface:
+
+```graphql
+ query MyQuery {
+      allMarkdownRemark {
+        edges {
+          node{
+            frontmatter {
+              title
+              aboutMe
+              training
+              skillsByTime
+              skillsByScore
+              links
+            }
+          }
+        }
+      }
+    }
+```
+
 together with the development server.
 
 > Note: With the local setup, there isn't any login necessary but sometimes

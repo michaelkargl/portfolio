@@ -36,3 +36,27 @@ h5 {
 h6 {
   @include heading(0.75rem);
 }
+
+ul {
+  margin-left: 1em;
+}
+
+ul ul {
+  margin-left: 2em;
+}
+
+ul ul ul {
+  margin-left: 3em;
+}
+
+ul, ol, li {
+  list-style-type: '• ';
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}

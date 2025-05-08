@@ -61,23 +61,79 @@ skillsByTime: |-
         { "name": "Frontend: (1946 hours)", "percent": 36.41 },
         { "name": "Backend (1903 hours)", "percent": 35.60 }
     ]
+training: >+
+  ## Training
+
+
+  * Microsoft Certified Professional
+
+  * Microsoft Certified Technology Specialist
+
+  * 70-483 Programming in C#
+
+  * 📃[ISAQB] Certified Professional for Software Architecture
+
+  * 📃[GTx: The Mechatronics Revolution]: Fundamentals and Core Concepts
+
+  * Professional Scrum Master
+
+  * Clean Code
+
+  * EU Data Protection / DSGVO / GDPR
+
+  * Advanced Git
+
+  * User Experience Design For Developers
+
+  * Feedback Training
+
+  * DevOps Engineering on AWS
+
+  * Ruminations on Architecture Principles and Architecture Flow Analysis
+
+  * Applying Software Estimation
+
+  * F# in the Workplace
+
+  * ℹ️[ISTQB]  CTFL - Certified Tester Foundation Level
+
+  * ℹ️[Mental First Aider]
+
+  * ℹ️[Diploma in Photography]
+
+  * <details>
+    <summary><i>Wow, so fancy</i></summary>
+    <b>WOW, SO BOLD</b>
+  </details>
+
+
+  [ISAQB]: https://www.certible.com/badge/ab9e6539-b328-440a-866c-fa8b9d6460b0/
+
+  [ISTQB]: https://www.istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/
+
+  [GTx: The Mechatronics Revolution]: https://courses.edx.org/certificates/5532133fb88b4b30933bc636ce8dfed4
+
+  [Mental First Aider]: https://www.promenteaustria.at/wp-content/uploads/2024/08/2022_brochureEnglish__EHFDS_promenteAustria_doppelseitenansicht_web.pdf
+
+  [Diploma in Photography]:  https://lightbox--academy-at.translate.goog/f-fotografie-ausbildung-wien-diplom/?_x_tr_sl=de&_x_tr_tl=en&_x_tr_hl=de&_x_tr_pto=wapp
+
 links: >-
   ## Links
 
 
-  * • 🔗 [GitHub]
+  * 🔗 [GitHub]
 
-  * • 🔗 [GitLab] _(migrating to github)_
+  * 🔗 [GitLab] _(migrating to github)_
 
-  * • 🔗 [LinkedIn]
+  * 🔗 [LinkedIn]
 
-  * • 🔗 [Pluralsight]
+  * 🔗 [Pluralsight]
 
 
   `-------------------------------`
 
 
-  * • 🔗 [Photography Portfolio]
+  * 🔗 [Photography Portfolio]
 
 
   [GitLab]: https://gitlab.com/michaelkargl

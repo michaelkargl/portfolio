@@ -1,17 +1,17 @@
 ﻿import * as React from "react";
 import {GroupBox, Monitor, Tab, TabBody, Tabs} from "react95";
-import {CvTabs} from "../../models";
+import {CvTabs, Markdown} from "../../models";
 import {Remark} from "react-remark";
 import {SkillsView} from "./skills-view";
 import {CvWindow} from "./cvWindow";
 
-
 export interface CurriculumProps {
     title: string;
-    aboutMe: string;
+    aboutMe: Markdown;
     skillsByTimeJson: string;
     skillsByScoreJson: string;
-    links: string;
+    links: Markdown;
+    training: Markdown;
     monitorImage: string;
 }
 
@@ -30,6 +30,7 @@ export const Curriculum: React.FC<CurriculumProps> = (props): React.ReactElement
                 <Tabs value={activeTab} onChange={setActiveTab}>
                     <Tab value={CvTabs.AboutMe}>About Me</Tab>
                     <Tab value={CvTabs.Skills}>Skills</Tab>
+                    <Tab value={CvTabs.Training}>Training</Tab>
                     <Tab value={CvTabs.Links}>Links</Tab>
                 </Tabs>
                 <TabBody>
@@ -49,6 +50,9 @@ export const Curriculum: React.FC<CurriculumProps> = (props): React.ReactElement
                                     <SkillsView skillsJson={props.skillsByScoreJson}/>
                                 </GroupBox>
                             </>
+                        )}
+                        {activeTab === CvTabs.Training && (
+                            <Remark>{props.training}</Remark>
                         )}
                         {activeTab === CvTabs.Links && (
                             <Remark>{props.links}</Remark>

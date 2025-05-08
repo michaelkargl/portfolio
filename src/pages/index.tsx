@@ -15,6 +15,7 @@ const IndexPage: React.FC<PageProps<Queries.Query>> = ({data}) => {
                 <Curriculum
                     title={frontMatter?.title ?? '---'}
                     links={frontMatter?.links ?? ''}
+                    training={frontMatter?.training ?? '---'}
                     skillsByTimeJson={frontMatter?.skillsByTime ?? '[]'}
                     skillsByScoreJson={frontMatter?.skillsByScore ?? '[]'}
                     aboutMe={frontMatter?.aboutMe ?? ''}
@@ -32,6 +33,7 @@ export const myQuery = graphql`
             frontmatter {
               title
               aboutMe
+              training
               skillsByTime
               skillsByScore
               links

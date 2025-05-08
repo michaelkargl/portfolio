@@ -1,5 +1,6 @@
 ﻿export enum CvTabs {
     AboutMe = 0,
     Skills = 1,
-    Links = 2
+    Training = 2,
+    Links = 3
 }

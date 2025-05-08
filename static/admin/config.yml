@@ -26,4 +26,5 @@ collections:
       - { name: aboutMe, label: About Me, widget: markdown }
       - { name: skillsByScore, label: Scored Skills, widget: text }
       - { name: skillsByTime, label: Timed Skills, widget: text }
+      - { name: training, label: Training, widget: markdown }
       - { name: links, label: Links, widget: markdown }
