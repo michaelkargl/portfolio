@@ -19,7 +19,7 @@ export const CurriculumStory : Story = {
         aboutMe: "About me",
         skillsByTimeJson: '[{ "name": "C", "percent": 67 }]',
         skillsByScoreJson: '[{ "name": "Backend", "percent": 67 }]',
-        monitorImage: "./assets/avatar.png"
+        monitorImage: "/assets/avatar.png"
     }
 }
 export default meta;

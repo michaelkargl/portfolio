@@ -20,7 +20,7 @@ const IndexPage: React.FC<PageProps<Queries.Query>> = ({data}) => {
                     skillsByTimeJson={frontMatter?.skillsByTime ?? '[]'}
                     skillsByScoreJson={frontMatter?.skillsByScore ?? '[]'}
                     aboutMe={frontMatter?.aboutMe ?? ''}
-                    monitorImage="/assets/avatar.png"/>
+                    monitorImage="./assets/avatar.png"/>
             </Layout>
         </div>
     )

@@ -47,6 +47,8 @@ export const Curriculum: React.FC<CurriculumProps> = (props): React.ReactElement
                             <>
                                 <MarkdownContent>{props.skillsDescription}</MarkdownContent>
                                 <hr/>
+                                <img src='./assets/wordcloud.svg' />
+                                <hr/>
                                 <GroupBox label='Timed Skills'>
                                     <SkillsView skillsJson={props.skillsByTimeJson}/>
                                 </GroupBox>

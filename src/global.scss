@@ -1,4 +1,8 @@
-﻿
+﻿img {
+  max-width: 100%;
+}
+
+
 .foreground-element {
   z-index: 99999;
 }
@@ -8,8 +12,8 @@
 }
 
 @mixin heading($hSize) {
-  font-size: $hSize !important;
-  padding: calc($hSize / 2) 0 !important;
+  font-size: $hSize;
+  padding: calc($hSize / 2) 0;
 }
 
 .markdown-content {
@@ -61,9 +65,5 @@
 
   em {
     font-style: italic !important;
-  }
-
-  img {
-    max-width: 100%;
   }
 }

@@ -22,7 +22,7 @@ on:
         type: boolean
 jobs:
   build:
-    if: ${{ github.event.inputs.skip_test_job == 'false' }}
+    if: ${{ github.event.inputs.skip_build_job == false }}
     runs-on: ubuntu-22.04
     steps:
       # ----------------------------------------------------------------------------
@@ -64,7 +64,7 @@ jobs:
           key: ${{ runner.os }}-gatsby-build-${{ hashFiles('public/**', 'storybook-static/**') }}
 
   test:
-    if: ${{ github.event.inputs.skip_build_job == 'false' }}
+    if: ${{ github.event.inputs.skip_test_job == 'false' }}
     needs: build
     runs-on: ubuntu-22.04
     steps:
