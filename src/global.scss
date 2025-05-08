@@ -7,16 +7,9 @@
   z-index: 0;
 }
 
-
-@mixin font-size($hLevel) {
-  font-size: $hLevel;
-}
-
-@mixin heading($hLevel) {
-  $spacingScalingFactor: 0.70;
-
-  font-size: $hLevel;
-  padding: ($hLevel * $spacingScalingFactor) 0;
+@mixin heading($hSize) {
+  font-size: $hSize;
+  padding: ($hSize/2) 0;
 }
 
 // https://tailwindcss. com/docs/font-size

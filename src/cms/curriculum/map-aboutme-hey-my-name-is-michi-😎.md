@@ -19,7 +19,7 @@ aboutMe: >-
   ## Personal
 
 
-  I enjoy cycling in my free time and maintain a 15-year-old Minecraft server so my younger sister can play. Lately, I’ve become passionate about progressive web apps (PWAs) and developing offline tools for personal use with React and Lit Html. I have a keen interest in anything related to PowerShell. I also enjoy pen-paling and practicing CrossFit.
+  I enjoy cycling in my free time and maintain a 15-year-old Minecraft family server where I like to experiment with electrical circuitry. In  recent years I’ve been dabbling in embedded development but also become passionate about progressive web apps (PWAs) and developing offline tools for personal use with React and Lit. I have a keen interest in anything related to PowerShell and F#. Non-nerdy hobbies include pen-paling and practicing CrossFit 🏋️
 skills: |-
   [
       { "name": "C#", "percent": 99 },
@@ -62,16 +62,19 @@ skillsByTime: |-
         { "name": "Backend (1903 hours)", "percent": 35.60 }
     ]
 links: >-
-  * • 🔗 [GitLab]
+  ## Links
+
 
   * • 🔗 [GitHub]
+
+  * • 🔗 [GitLab] _(migrating to github)_
 
   * • 🔗 [LinkedIn]
 
   * • 🔗 [Pluralsight]
 
 
-  - - -
+  `-------------------------------`
 
 
   * • 🔗 [Photography Portfolio]

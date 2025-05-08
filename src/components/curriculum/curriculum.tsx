@@ -35,7 +35,10 @@ export const Curriculum: React.FC<CurriculumProps> = (props): React.ReactElement
                 <TabBody>
                     <GroupBox>
                         {activeTab === CvTabs.AboutMe && (
-                            <Remark>{props.aboutMe}</Remark>
+                            <>
+                                <Remark>{props.aboutMe}</Remark>
+                                <Remark>{props.links}</Remark>
+                            </>
                         )}
                         {activeTab === CvTabs.Skills && (
                             <>
