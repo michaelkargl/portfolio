@@ -10,8 +10,19 @@ on:
         required: false
         default: 'false'
         type: boolean
+      skip_test_job:
+        description: 'Skip the test job'
+        required: false
+        default: 'false'
+        type: boolean
+      skip_build_job:
+        description: 'Skip the build job'
+        required: false
+        default: 'false'
+        type: boolean
 jobs:
   build:
+    if: ${{ github.event.inputs.skip_test_job == 'false' }}
     runs-on: ubuntu-22.04
     steps:
       # ----------------------------------------------------------------------------
@@ -33,7 +44,7 @@ jobs:
           yarn run build:storybook
       # ------------------------------------------------------------------------------
       - name: Setup Cache for Node Dependencies
-        if: ${{ github.event.inputs.skip_cache != 'true' }}
+        if: ${{ github.event.inputs.skip_cache == 'false' }}
         uses: actions/cache@v4
         with:
           path: |
@@ -44,7 +55,7 @@ jobs:
             ${{ runner.os }}-gatsby-build-
       # ------------------------------------------------------------------------------
       - name: Setup Cache for Binaries
-        if: ${{ github.event.inputs.skip_cache != 'true' }}
+        if: ${{ github.event.inputs.skip_cache == 'false' }}
         uses: actions/cache@v4
         with:
           path: |
@@ -53,6 +64,7 @@ jobs:
           key: ${{ runner.os }}-gatsby-build-${{ hashFiles('public/**', 'storybook-static/**') }}
 
   test:
+    if: ${{ github.event.inputs.skip_build_job == 'false' }}
     needs: build
     runs-on: ubuntu-22.04
     steps:
@@ -63,7 +75,7 @@ jobs:
           node-version-file: .nvmrc
       # ----------------------------------------------------------------------------
       - uses: actions/cache@v4
-        if: ${{ github.event.inputs.skip_cache != 'true' }}
+        if: ${{ github.event.inputs.skip_cache == 'false' }}
         with:
           path: |
             .cache
@@ -98,7 +110,7 @@ jobs:
           cache: yarn
       # ----------------------------------------------------------------------------
       - name: Caching Node-Packages
-        if: ${{ github.event.inputs.skip_cache != 'true' }}
+        if: ${{ github.event.inputs.skip_cache == 'false' }}
         uses: actions/cache@v4
         with:
           path: |
@@ -107,7 +119,7 @@ jobs:
           key: ${{ runner.os }}-gatsby-build-${{ hashFiles('**/yarn.lock') }}
       # ----------------------------------------------------------------------------
       - name: Restore Binaries cache
-        if: ${{ github.event.inputs.skip_cache != 'true' }}
+        if: ${{ github.event.inputs.skip_cache == 'false' }}
         uses: actions/cache@v4
         with:
           path: |
@@ -115,20 +127,13 @@ jobs:
             storybook-static
           key: ${{ runner.os }}-gatsby-build-${{ hashFiles('public/**', 'storybook-static/**') }}
       # ----------------------------------------------------------------------------
-      - name: Installing dependencies
-        if: ${{ github.event.inputs.skip_cache != 'true' }}
-        run: yarn install
-      # ----------------------------------------------------------------------------
-      - name: Building application
-        if: ${{ github.event.inputs.skil_cache != 'true' }}
-        run: yarn run build
-      # ----------------------------------------------------------------------------
       - name: Configuring Github-Pages
         uses: actions/configure-pages@v4
         with:
           static_site_generator: gatsby
-      # ----------------------------------------------------------------------------
-      - name: Building Code for Publishing
+          # ----------------------------------------------------------------------------
+      - name: Prepare deployment
+        if: ${{ github.event.inputs.skip_cache == 'true' }}
         run: |
           yarn install
           yarn run build
