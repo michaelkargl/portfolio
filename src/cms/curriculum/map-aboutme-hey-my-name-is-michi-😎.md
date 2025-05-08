@@ -48,8 +48,6 @@ skillsDescription: >-
   ![](/assets/wordcloud.svg)
 
 
-
-
   Skills are grouped into 2 categories
 
 
