@@ -24,6 +24,7 @@ collections:
     fields:
       - { name: title, label: Title }
       - { name: aboutMe, label: About Me, widget: markdown }
+      - { name: skillsDescription, label: Skill Description, widget: markdown}
       - { name: skillsByScore, label: Scored Skills, widget: text }
       - { name: skillsByTime, label: Timed Skills, widget: text }
       - { name: training, label: Training, widget: markdown }

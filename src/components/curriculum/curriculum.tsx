@@ -8,6 +8,7 @@ import {CvWindow} from "./cvWindow";
 export interface CurriculumProps {
     title: string;
     aboutMe: Markdown;
+    skillsDescription: Markdown;
     skillsByTimeJson: string;
     skillsByScoreJson: string;
     links: Markdown;
@@ -43,6 +44,8 @@ export const Curriculum: React.FC<CurriculumProps> = (props): React.ReactElement
                         )}
                         {activeTab === CvTabs.Skills && (
                             <>
+                                <Remark>{props.skillsDescription}</Remark>
+                                <hr/>
                                 <GroupBox label='Timed Skills'>
                                     <SkillsView skillsJson={props.skillsByTimeJson}/>
                                 </GroupBox>

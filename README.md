@@ -67,6 +67,10 @@ it needs an API to connect to. This api is started automatically with
 yarn run start
 ```
 
+> Note: With the local setup, there isn't any login necessary but sometimes
+> something goes wrong and you land on a login page. Sometimes a simple page reload
+> work, othertimes you might have to re-run. Safest way is to run the cms separately.
+
 ### Adding new entries
 
 Decap CMS handles everything in one [config.yml](./static/admin/config.yml) file.
@@ -92,11 +96,8 @@ access them through the graphql interface:
     }
 ```
 
-together with the development server.
-
-> Note: With the local setup, there isn't any login necessary but sometimes
-> something goes wrong and you land on a login page. Sometimes a simple page reload
-> work, othertimes you might have to re-run. Safest way is to run the cms separately.
+Since queries are evaluated at design time you might have to restart
+the dev server to have all the types built for good developing.
 
 ## Deploy
 

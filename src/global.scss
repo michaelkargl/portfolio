@@ -9,7 +9,7 @@
 
 @mixin heading($hSize) {
   font-size: $hSize;
-  padding: ($hSize/2) 0;
+  padding: calc($hSize/2) 0;
 }
 
 // https://tailwindcss. com/docs/font-size
@@ -37,7 +37,7 @@ h6 {
   @include heading(0.75rem);
 }
 
-ul {
+ul, ol {
   margin-left: 1em;
 }
 
@@ -59,4 +59,8 @@ strong {
 
 em {
   font-style: italic;
+}
+
+img {
+  max-width: 100%;
 }

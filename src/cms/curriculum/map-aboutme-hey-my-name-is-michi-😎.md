@@ -38,6 +38,27 @@ skills: |-
       { "name": "Domain-driven Design", "percent": 64 },
       { "name": "Python", "percent": 44 }
   ]
+skillsDescription: >-
+  # Skills
+
+
+  This word cloud has been generated from 4 years of time tracking. It should give a good overview on the average skill set used over time.
+
+
+  ![](/assets/wordcloud.svg)
+
+
+
+
+  Skills are grouped into 2 categories
+
+
+  1. Scored Skills
+
+     * Skills that have been graded in one way or another \_(Pluralsight Skill IQ, Certification Scores, School grades...)\_
+  2. Timed Skills
+
+     * These skills are measured in their time being used in comparison to their sum \_(used Backend/Frontend 50%/50%)\_
 skillsByScore: |-
   [
         { "name": "C#", "percent": 99 },
@@ -97,7 +118,7 @@ training: >+
 
   * ℹ️[ISTQB]  CTFL - Certified Tester Foundation Level
 
-  * ℹ️[Mental First Aider]
+  * ℹ️[Mental Health First Aider]
 
   * ℹ️[Diploma in Photography]
 
