@@ -8,59 +8,62 @@
 }
 
 @mixin heading($hSize) {
-  font-size: $hSize;
-  padding: calc($hSize/2) 0;
+  font-size: $hSize !important;
+  padding: calc($hSize / 2) 0 !important;
 }
 
-// https://tailwindcss. com/docs/font-size
-h1 {
-  @include heading(1.5rem);
-}
+.markdown-content {
 
-h2 {
-  @include heading(1.25rem);
-}
+  // https://tailwindcss. com/docs/font-size
+  h1 {
+    @include heading(1.5rem);
+  }
 
-h3 {
-  @include heading(1.125rem);
-}
+  h2 {
+    @include heading(1.25rem);
+  }
 
-h4 {
-  @include heading(1rem);
-}
+  h3 {
+    @include heading(1.125rem);
+  }
 
-h5 {
-  @include heading(0.875rem);
-}
+  h4 {
+    @include heading(1rem);
+  }
 
-h6 {
-  @include heading(0.75rem);
-}
+  h5 {
+    @include heading(0.875rem);
+  }
 
-ul, ol {
-  margin-left: 1em;
-}
+  h6 {
+    @include heading(0.75rem);
+  }
 
-ul ul {
-  margin-left: 2em;
-}
+  ul {
+    margin-left: 1em;
+  }
 
-ul ul ul {
-  margin-left: 3em;
-}
+  ul ul {
+    margin-left: 2em;
+  }
 
-ul, ol, li {
-  list-style-type: '• ';
-}
+  ul ul ul {
+    margin-left: 3em;
+  }
 
-strong {
-  font-weight: bold;
-}
+  ul, li {
+    list-style-type: '• ';
+  }
 
-em {
-  font-style: italic;
-}
+  strong {
+    font-weight: bold;
+  }
 
-img {
-  max-width: 100%;
+  em {
+    font-style: italic !important;
+  }
+
+  img {
+    max-width: 100%;
+  }
 }
