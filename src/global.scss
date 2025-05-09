@@ -13,6 +13,7 @@
 
 @mixin heading($hSize) {
   font-size: $hSize;
+  font-weight: bolder;
   padding: calc($hSize / 2) 0;
 }
 
@@ -43,7 +44,7 @@
     @include heading(0.75rem);
   }
 
-  ul {
+  ul, ol {
     margin-left: 1em;
   }
 
@@ -65,5 +66,18 @@
 
   em {
     font-style: italic !important;
+  }
+
+  img {
+    padding: 1em;
+  }
+
+  p {
+    padding-bottom: 1em;
+  }
+
+  // remove the padding of all p tags of list items with a p tag
+  li:has(> p) p{
+    padding-bottom: 0;
   }
 }

@@ -53,10 +53,10 @@ skillsDescription: >-
 
   1. Scored Skills
 
-     * Skills that have been graded in one way or another \_(Pluralsight Skill IQ, Certification Scores, School grades...)\_
+     * \_Skills that have been graded in one way or another (Pluralsight Skill IQ, Certification Scores, School grades...)\_
   2. Timed Skills
 
-     * These skills are measured in their time being used in comparison to their sum \_(used Backend/Frontend 50%/50%)\_
+     * These skills are measured in their time being used in comparison to their sum (used Backend/Frontend 50%/50%)_
 skillsByScore: |-
   [
         { "name": "C#", "percent": 99 },
