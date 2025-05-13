@@ -1,0 +1,7 @@
+﻿
+// TODO test with movable modal
+// TODO create a PR for that
+div[role="tablist"] div:nth-of-type(1) {
+  flex: none !important;
+  display: block;
+}

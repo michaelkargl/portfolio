@@ -1,4 +1,6 @@
-﻿img {
+﻿@use './react95-overrides';
+
+img {
   max-width: 100%;
 }
 
@@ -17,7 +19,7 @@
   padding: calc($hSize / 2) 0;
 }
 
-.markdown-content {
+* {
 
   // https://tailwindcss. com/docs/font-size
   h1 {
@@ -79,5 +81,9 @@
   // remove the padding of all p tags of list items with a p tag
   li:has(> p) p{
     padding-bottom: 0;
+  }
+
+  b {
+    font-weight: bolder;
   }
 }
