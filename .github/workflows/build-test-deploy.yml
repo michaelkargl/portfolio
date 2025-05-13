@@ -22,7 +22,7 @@ on:
         type: boolean
 jobs:
   build:
-    if: ${{ github.event.inputs.skip_build_job == false }}
+    if: ${{ github.event.inputs.skip_build_job != 'true' }}
     runs-on: ubuntu-22.04
     steps:
       # ----------------------------------------------------------------------------
@@ -44,7 +44,7 @@ jobs:
           yarn run build:storybook
       # ------------------------------------------------------------------------------
       - name: Setup Cache for Node Dependencies
-        if: ${{ github.event.inputs.skip_cache == 'false' }}
+        if: ${{ github.event.inputs.skip_cache != 'true' }}
         uses: actions/cache@v4
         with:
           path: |
@@ -55,7 +55,7 @@ jobs:
             ${{ runner.os }}-gatsby-build-
       # ------------------------------------------------------------------------------
       - name: Setup Cache for Binaries
-        if: ${{ github.event.inputs.skip_cache == 'false' }}
+        if: ${{ github.event.inputs.skip_cache != 'true' }}
         uses: actions/cache@v4
         with:
           path: |
@@ -64,7 +64,7 @@ jobs:
           key: ${{ runner.os }}-gatsby-build-${{ hashFiles('public/**', 'storybook-static/**') }}
 
   test:
-    if: ${{ github.event.inputs.skip_test_job == 'false' }}
+    if: ${{ github.event.inputs.skip_test_job != 'true' }}
     needs: build
     runs-on: ubuntu-22.04
     steps:
@@ -75,7 +75,7 @@ jobs:
           node-version-file: .nvmrc
       # ----------------------------------------------------------------------------
       - uses: actions/cache@v4
-        if: ${{ github.event.inputs.skip_cache == 'false' }}
+        if: ${{ github.event.inputs.skip_cache != 'true' }}
         with:
           path: |
             .cache
