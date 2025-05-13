@@ -10,15 +10,7 @@ export const SkillsPage: React.FC<PageProps<Queries.SkillQuery>> = ({data}) => {
     const frontMatter = data?.allMarkdownRemark.edges[0]?.node.frontmatter;
     return (
         <Layout>
-            <Curriculum
-                title=""
-                aboutMe=""
-                skillsDescription=""
-                skillsByTimeJson="[]"
-                skillsByScoreJson="[]"
-                links="[]"
-                training="[]"
-                monitorImage="">
+            <Curriculum>
                 <>
                     <MarkdownContent>{frontMatter?.skillsDescription ?? '-'}</MarkdownContent>
                     <hr/>

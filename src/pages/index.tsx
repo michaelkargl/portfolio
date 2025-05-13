@@ -1,8 +1,8 @@
 import * as React from "react"
 import {graphql, type PageProps} from "gatsby"
 import {Layout} from "../components";
-import './index.scss';
 import {Curriculum} from "../components/curriculum/curriculum";
+import './index.scss';
 
 
 const IndexPage: React.FC<PageProps<Queries.Query>> = ({data}) => {

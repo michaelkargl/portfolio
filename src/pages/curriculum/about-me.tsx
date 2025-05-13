@@ -2,7 +2,7 @@
 import {Layout} from "../../components";
 import {Curriculum} from "../../components/curriculum/curriculum";
 import {MarkdownContent} from "../../components/MarkdownContent";
-import {graphql, type PageProps} from "gatsby";
+import {graphql, type PageProps} from "gatsby"
 
 const AboutMePage: React.FC<PageProps<Queries.AboutMeQuery>> = ({data}) => {
     const frontMatter = data?.allMarkdownRemark.edges[0]?.node.frontmatter;
