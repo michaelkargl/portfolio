@@ -12,15 +12,7 @@ const IndexPage: React.FC<PageProps<Queries.Query>> = ({data}) => {
     return (
         <div className='index-component'>
             <Layout>
-                <Curriculum
-                    title={frontMatter?.title ?? '---'}
-                    links={frontMatter?.links ?? ''}
-                    training={frontMatter?.training ?? '---'}
-                    skillsDescription={frontMatter?.skillsDescription ?? '---'}
-                    skillsByTimeJson={frontMatter?.skillsByTime ?? '[]'}
-                    skillsByScoreJson={frontMatter?.skillsByScore ?? '[]'}
-                    aboutMe={frontMatter?.aboutMe ?? ''}
-                    monitorImage="./assets/avatar.png"/>
+                <Curriculum />
             </Layout>
         </div>
     )

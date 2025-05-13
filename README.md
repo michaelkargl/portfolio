@@ -147,3 +147,12 @@ Get-Process node | Stop-Process
 ```
 
 usually fixes these errors.
+
+### Clearing Caches
+
+Sometimes it can happen that gatsby won't recognize a new page. In this case it can be helpful
+to try and clear its cache to force it to recreate the pages from scratch.
+
+```sh
+Remove-Item -Recurse -Force .cache
+```

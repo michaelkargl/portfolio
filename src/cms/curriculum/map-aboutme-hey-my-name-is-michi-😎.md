@@ -1,4 +1,5 @@
 ---
+type: curriculum
 title: Curriculum
 aboutMe: >-
   ## Short

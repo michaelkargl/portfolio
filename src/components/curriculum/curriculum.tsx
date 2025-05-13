@@ -1,68 +1,44 @@
-﻿import * as React from "react";
+﻿import React, {PropsWithChildren} from "react";
 import {GroupBox, Monitor, Tab, TabBody, Tabs} from "react95";
 import {CvTabs, Markdown} from "../../models";
-import {Remark} from "react-remark";
-import {SkillsView} from "./skills-view";
 import {CvWindow} from "./cvWindow";
-import {MarkdownContent} from "../MarkdownContent";
+import {Link} from "gatsby";
 
-export interface CurriculumProps {
-    title: string;
-    aboutMe: Markdown;
-    skillsDescription: Markdown;
-    skillsByTimeJson: string;
-    skillsByScoreJson: string;
-    links: Markdown;
-    training: Markdown;
-    monitorImage: string;
-}
+export type CurriculumProps = PropsWithChildren<{}>
 
 export const Curriculum: React.FC<CurriculumProps> = (props): React.ReactElement => {
     const [activeTab, setActiveTab] = React.useState<number>(0);
+
     return (
-        <CvWindow title={props.title}>
+        <CvWindow title="Curriculum">
             <div className="index-component--introduction">
                 {/* This is necessary to not have the menu overlap with the monitor.
                                 Unsure how to ignore that warning or extend Monitor to support className. */}
                 {/* @ts-ignore */}
                 <Monitor className='background-element' backgroundStyles={{
-                    backgroundImage: `url("${props.monitorImage}")`,
-                    backgroundSize: '80%'
+                    backgroundImage: `url("./assets/avatar.png")`,
+                    backgroundSize: '80%' /* cheating the image into the size of the monitor */
                 }}/>
                 <Tabs value={activeTab} onChange={setActiveTab}>
-                    <Tab value={CvTabs.AboutMe}>About Me</Tab>
-                    <Tab value={CvTabs.Skills}>Skills</Tab>
-                    <Tab value={CvTabs.Training}>Training</Tab>
-                    <Tab value={CvTabs.Links}>Links</Tab>
+                    <Link to='/curriculum/about-me'>
+                        <Tab value={CvTabs.AboutMe}>About Me</Tab>
+                    </Link>
+                    <Link to='/curriculum/skills'>
+                        <Tab value={CvTabs.Skills}>Skills</Tab>
+                    </Link>
+                    <Link to='/curriculum/experience'>
+                        <Tab value={CvTabs.Experience}>Experience</Tab>
+                    </Link>
+                    <Link to='/curriculum/training'>
+                        <Tab value={CvTabs.Training}>Training</Tab>
+                    </Link>
+                    <Link to='/curriculum/links'>
+                        <Tab value={CvTabs.Links}>Links</Tab>
+                    </Link>
                 </Tabs>
                 <TabBody>
                     <GroupBox>
-                        {activeTab === CvTabs.AboutMe && (
-                            <>
-                                <MarkdownContent>{props.aboutMe}</MarkdownContent>
-                                <MarkdownContent>{props.links}</MarkdownContent>
-                            </>
-                        )}
-                        {activeTab === CvTabs.Skills && (
-                            <>
-                                <MarkdownContent>{props.skillsDescription}</MarkdownContent>
-                                <hr/>
-                                <img src='./assets/wordcloud.svg' />
-                                <hr/>
-                                <GroupBox label='Timed Skills'>
-                                    <SkillsView skillsJson={props.skillsByTimeJson}/>
-                                </GroupBox>
-                                <GroupBox label='Scored Skills'>
-                                    <SkillsView skillsJson={props.skillsByScoreJson}/>
-                                </GroupBox>
-                            </>
-                        )}
-                        {activeTab === CvTabs.Training && (
-                            <MarkdownContent>{props.training}</MarkdownContent>
-                        )}
-                        {activeTab === CvTabs.Links && (
-                            <MarkdownContent>{props.links}</MarkdownContent>
-                        )}
+                        {props.children}
                     </GroupBox>
                 </TabBody>
             </div>

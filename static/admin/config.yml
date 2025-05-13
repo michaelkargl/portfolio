@@ -24,10 +24,25 @@ collections:
     folder: src/cms/curriculum
     create: true
     fields:
+      - { name: type, label: Type, widget: hidden, default: 'curriculum' }
       - { name: title, label: Title }
       - { name: aboutMe, label: About Me, widget: markdown }
-      - { name: skillsDescription, label: Skill Description, widget: markdown}
+      - { name: skillsDescription, label: Skill Description, widget: markdown }
       - { name: skillsByScore, label: Scored Skills, widget: text }
       - { name: skillsByTime, label: Timed Skills, widget: text }
       - { name: training, label: Training, widget: markdown }
       - { name: links, label: Links, widget: markdown }
+  - name: job
+    label: Jobs
+    label_singular: Job
+    folder: src/cms/jobs
+    create: true
+    fields:
+      - { name: type, label: Type, widget: hidden, default: "job" }
+      - { name: name, label: Name }
+      - { name: role, label: Role }
+      - { name: from, label: From, widget: datetime }
+      - { name: to, label: To, widget: datetime }
+      - { name: description, label: Description, widget: markdown }
+      - { name: skills, label: Skills, widget: list }
+      - { name: image, label: Image, widget: image, required: false }
