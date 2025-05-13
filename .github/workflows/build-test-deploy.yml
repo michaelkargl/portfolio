@@ -115,7 +115,6 @@ jobs:
           static_site_generator: gatsby
           # ----------------------------------------------------------------------------
       - name: Prepare deployment
-        if: ${{ github.event.inputs.skip_cache == 'true' }}
         run: |
           yarn install
       - name: Build application artifacts
