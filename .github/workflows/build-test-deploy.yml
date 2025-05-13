@@ -53,16 +53,7 @@ jobs:
           key: ${{ runner.os }}-gatsby-build-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-gatsby-build-
-      # ------------------------------------------------------------------------------
-      - name: Setup Cache for Binaries
-        if: ${{ github.event.inputs.skip_cache != 'true' }}
-        uses: actions/cache@v4
-        with:
-          path: |
-            public
-            storybook-static
-          key: ${{ runner.os }}-gatsby-build-${{ hashFiles('public/**', 'storybook-static/**') }}
-
+  
   test:
     if: ${{ github.event.inputs.skip_test_job != 'true' }}
     needs: build
@@ -117,15 +108,6 @@ jobs:
             .cache
             node_modules
           key: ${{ runner.os }}-gatsby-build-${{ hashFiles('**/yarn.lock') }}
-      # ----------------------------------------------------------------------------
-      - name: Restore Binaries cache
-        if: ${{ github.event.inputs.skip_cache == 'false' }}
-        uses: actions/cache@v4
-        with:
-          path: |
-            public
-            storybook-static
-          key: ${{ runner.os }}-gatsby-build-${{ hashFiles('public/**', 'storybook-static/**') }}
       # ----------------------------------------------------------------------------
       - name: Configuring Github-Pages
         uses: actions/configure-pages@v4
