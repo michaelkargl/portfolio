@@ -118,6 +118,8 @@ jobs:
         if: ${{ github.event.inputs.skip_cache == 'true' }}
         run: |
           yarn install
+      - name: Build application artifacts
+        run: |
           yarn run build
           mv storybook-static public/storybook
       # ----------------------------------------------------------------------------
