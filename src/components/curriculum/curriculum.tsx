@@ -1,6 +1,6 @@
 ﻿import React, {PropsWithChildren} from "react";
 import {GroupBox, Monitor, Tab, TabBody, Tabs} from "react95";
-import {CvTabs} from "../../models";
+import {CvTabs, Markdown} from "../../models";
 import {CvWindow} from "./cvWindow";
 import {Link} from "gatsby";
 
