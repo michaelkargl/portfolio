@@ -4,8 +4,8 @@ import {Curriculum} from "../../components/curriculum/curriculum";
 import {graphql, PageProps} from "gatsby";
 import {MarkdownContent} from "../../components/MarkdownContent";
 
-export const TrainingPage: React.FC<PageProps<Queries.TrainingsQuery>> = ({data}) => {
-    const frontMatter = data?.allMarkdownRemark.edges[0]?.node.frontmatter;
+export const TrainingPage: React.FC<PageProps<Queries.TrainingsQuery>> = (props) => {
+    const frontMatter = props.data?.allMarkdownRemark.edges[0]?.node.frontmatter;
     return (
         <Layout>
             <Curriculum>

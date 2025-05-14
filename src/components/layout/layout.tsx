@@ -39,24 +39,49 @@ const ThemedBackground = styled.div`
     background: ${(styling: any) => styling.theme.desktopBackground};
 `;
 
+function getUrlParam(name: string): string | null {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+}
+
+function setUrlParam(name: string, value: string) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentValue = getUrlParam(name)
+    if (value !== currentValue) {
+        urlParams.set(name, value);
+        window.location.search = urlParams.toString();
+    }
+}
+
 export const Layout: React.FC<PropsWithChildren<{}>> = (props): ReactElement => {
-    const [themeSelection, setThemeSelection] = useState(React95Theme.Original)
-    const [theme, setTheme] = useState<unknown>();
+    const [react95Theme, setReact95Theme] = useState<any>(undefined)
 
     useEffect(() => {
-        console.log("Switching themes...");
-        loadThemeAsync(themeSelection);
-    }, [themeSelection]);
+        const loadThemeAsync = async () => {
+            const themeSelection = getUrlParam("theme") ?? React95Theme.Original
+            const theme = await importReact95ThemeAsync(themeSelection);
+            setReact95Theme(theme)
+        }
 
-    async function loadThemeAsync(targetTheme: React95Theme): Promise<void> {
+        loadThemeAsync().then(r => console.debug('Loaded react 95 theme', r));
+    }, []);
+
+    function setThemeUrlParam(themeName: string): void {
+        if (react95Theme === getUrlParam("theme")) {
+            return
+        }
+        setUrlParam("theme", themeName);
+    }
+
+    async function importReact95ThemeAsync(targetTheme: string): Promise<void> {
         const themeName = (React95Theme as any)[targetTheme] ?? 'original';
-        const react95Theme = await import(`react95/dist/themes/${themeName}`);
-        setTheme(react95Theme);
+        const imported = await import(`react95/dist/themes/${themeName}`);
+        return imported;
     }
 
     return (<div className='layout-component'>
         {
-            !!theme && <ThemeProvider theme={theme}>
+            !!react95Theme && <ThemeProvider theme={react95Theme}>
                 <ThemedBackground className='themed-background-component'>
                     <GlobalStyles/>
                     <CvSkillParserContext.Provider value={{parser: SKILLS_PARSER}}>
@@ -64,7 +89,7 @@ export const Layout: React.FC<PropsWithChildren<{}>> = (props): ReactElement => 
 
                             <div className="main-frame">
                                 <header>
-                                    <AppMenuBar themePicked={t => setThemeSelection(t)}/>
+                                    <AppMenuBar themePicked={t => setThemeUrlParam(t)}/>
                                 </header>
                                 <div className='main-content'>
                                     <main>
