@@ -6,6 +6,11 @@ $mainframe-spacing: 15px;
   box-sizing: border-box !important;
 }
 
+html {
+  /* prevents white flashing during page loads */
+  background-color: #008080;
+}
+
 // enable all the elements down to the main-frame
 // to take up the entire screenspace
 html,

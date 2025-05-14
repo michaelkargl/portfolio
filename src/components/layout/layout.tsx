@@ -14,7 +14,6 @@ const container = new IocModule()
     .registerCvSkillParser();
 
 const SKILLS_PARSER = container.resolveRequired<ICvSkillParser>(IoCSymbol.CvSkillParser);
-//const SKILLS_PARSER = new JsonCvSkillParser();
 
 const GlobalStyles = createGlobalStyle`
     ${styleReset}
@@ -51,19 +50,18 @@ export const Layout: React.FC<PropsWithChildren<{}>> = (props): ReactElement => 
 
     async function loadThemeAsync(targetTheme: React95Theme): Promise<void> {
         const themeName = (React95Theme as any)[targetTheme] ?? 'original';
-
-        console.info("Switching theme to: %s", themeName);
         const react95Theme = await import(`react95/dist/themes/${themeName}`);
         setTheme(react95Theme);
     }
 
     return (<div className='layout-component'>
-        <GlobalStyles/>
-        <CvSkillParserContext.Provider value={{parser: SKILLS_PARSER}}>
-            <ClippyProvider agentName="Clippy">
-                {
-                    !!theme && <ThemeProvider theme={theme}>
-                        <ThemedBackground className='themed-background-component'>
+        {
+            !!theme && <ThemeProvider theme={theme}>
+                <ThemedBackground className='themed-background-component'>
+                    <GlobalStyles/>
+                    <CvSkillParserContext.Provider value={{parser: SKILLS_PARSER}}>
+                        <ClippyProvider agentName="Clippy">
+
                             <div className="main-frame">
                                 <header>
                                     <AppMenuBar themePicked={t => setThemeSelection(t)}/>
@@ -79,10 +77,10 @@ export const Layout: React.FC<PropsWithChildren<{}>> = (props): ReactElement => 
                                     </Frame>
                                 </footer>
                             </div>
-                        </ThemedBackground>
-                    </ThemeProvider>
-                }
-            </ClippyProvider>
-        </CvSkillParserContext.Provider>
+                        </ClippyProvider>
+                    </CvSkillParserContext.Provider>
+                </ThemedBackground>
+            </ThemeProvider>
+        }
     </div>);
 }
