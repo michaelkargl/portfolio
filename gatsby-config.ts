@@ -15,6 +15,9 @@ const config: GatsbyConfig = {
         "gatsby-plugin-mdx",
         "gatsby-plugin-decap-cms",
         "gatsby-plugin-sass",
+        `gatsby-plugin-image`,
+        `gatsby-plugin-sharp`,
+        `gatsby-transformer-sharp`,
         {
             resolve: "gatsby-transformer-remark",
             options: {
