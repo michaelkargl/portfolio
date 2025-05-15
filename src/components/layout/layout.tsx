@@ -8,7 +8,8 @@ import {React95Theme} from "../../utils/React95Theme";
 import {ClippyProvider} from "@react95/clippy";
 import {CvSkillParserContext} from "../../contexts/cv-skill-parser-context";
 import {IocModule, IoCSymbol} from "../../ioc";
-import {ICvSkillParser, JsonCvSkillParser} from "../../parser";
+import {ICvSkillParser} from "../../parser";
+import {Clock} from "../clock";
 
 const container = new IocModule()
     .registerCvSkillParser();
@@ -75,8 +76,7 @@ export const Layout: React.FC<PropsWithChildren<{}>> = (props): ReactElement => 
 
     async function importReact95ThemeAsync(targetTheme: string): Promise<void> {
         const themeName = (React95Theme as any)[targetTheme] ?? 'original';
-        const imported = await import(`react95/dist/themes/${themeName}`);
-        return imported;
+        return await import(`react95/dist/themes/${themeName}`);
     }
 
     return (<div className='layout-component'>
@@ -98,7 +98,7 @@ export const Layout: React.FC<PropsWithChildren<{}>> = (props): ReactElement => 
                                 </div>
                                 <footer className='status-bar'>
                                     <Frame className='footer-status-bar'>
-                                        asdf
+                                        <Clock/>
                                     </Frame>
                                 </footer>
                             </div>

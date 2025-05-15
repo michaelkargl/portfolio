@@ -1,41 +1,21 @@
-import * as React from "react"
-import {graphql, type PageProps} from "gatsby"
+import React, { useEffect } from "react"
 import {Layout} from "../components";
-import {Curriculum} from "../components/curriculum/curriculum";
+import { navigate } from "gatsby"
 import './index.scss';
 
 
-const IndexPage: React.FC<PageProps<Queries.Query>> = ({data}) => {
-    const [activeTab, setActiveTab] = React.useState<number>(0);
-    const frontMatter = data?.allMarkdownRemark.edges[0]?.node.frontmatter;
+const IndexPage: React.FC = () => {
 
+    useEffect(() => {
+        navigate('/curriculum/about-me', { replace: true })
+    }, [])
+
+    // briefely shown before redirecting
     return (
         <div className='index-component'>
-            <Layout>
-                <Curriculum />
-            </Layout>
+            <Layout/>
         </div>
     )
 }
-
-export const myQuery = graphql`
-    query MyQuery {
-      allMarkdownRemark {
-        edges {
-          node{
-            frontmatter {
-              title
-              aboutMe
-              training
-              skillsDescription
-              skillsByTime
-              skillsByScore
-              links
-            }
-          }
-        }
-      }
-    }
-`;
 
 export default IndexPage
