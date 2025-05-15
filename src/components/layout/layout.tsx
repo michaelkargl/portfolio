@@ -10,6 +10,7 @@ import {CvSkillParserContext} from "../../contexts/cv-skill-parser-context";
 import {IocModule, IoCSymbol} from "../../ioc";
 import {ICvSkillParser} from "../../parser";
 import {Clock} from "../clock";
+import {UrlUtils} from "../../utils/UrlUtils";
 
 const container = new IocModule()
     .registerCvSkillParser();
@@ -40,26 +41,13 @@ const ThemedBackground = styled.div`
     background: ${(styling: any) => styling.theme.desktopBackground};
 `;
 
-function getUrlParam(name: string): string | null {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(name);
-}
-
-function setUrlParam(name: string, value: string) {
-    const urlParams = new URLSearchParams(window.location.search);
-    const currentValue = getUrlParam(name)
-    if (value !== currentValue) {
-        urlParams.set(name, value);
-        window.location.search = urlParams.toString();
-    }
-}
 
 export const Layout: React.FC<PropsWithChildren<{}>> = (props): ReactElement => {
     const [react95Theme, setReact95Theme] = useState<any>(undefined)
 
     useEffect(() => {
         const loadThemeAsync = async () => {
-            const themeSelection = getUrlParam("theme") ?? React95Theme.Original
+            const themeSelection = UrlUtils.getUrlParam("theme") ?? React95Theme.Original
             const theme = await importReact95ThemeAsync(themeSelection);
             setReact95Theme(theme)
         }
@@ -68,10 +56,10 @@ export const Layout: React.FC<PropsWithChildren<{}>> = (props): ReactElement => 
     }, []);
 
     function setThemeUrlParam(themeName: string): void {
-        if (react95Theme === getUrlParam("theme")) {
+        if (react95Theme === UrlUtils.getUrlParam("theme")) {
             return
         }
-        setUrlParam("theme", themeName);
+        UrlUtils.setUrlParam("theme", themeName);
     }
 
     async function importReact95ThemeAsync(targetTheme: string): Promise<void> {

@@ -1,14 +1,50 @@
-﻿import React, {PropsWithChildren} from "react";
+﻿import React, {PropsWithChildren, useEffect} from "react";
 import {GroupBox, Monitor, Tab, TabBody, Tabs} from "react95";
 import {CvTabs} from "../../models";
 import {CvWindow} from "./cvWindow";
 import {Link, navigate} from "gatsby";
 import {StaticImage} from "gatsby-plugin-image";
+import {UrlUtils} from "../../utils/UrlUtils";
 
 export type CurriculumProps = PropsWithChildren<{}>
 
+
 export const Curriculum: React.FC<CurriculumProps> = (props): React.ReactElement => {
-    const [activeTab, setActiveTab] = React.useState<number>(0);
+    const [activeTab, setActiveTab] = React.useState<number>(-1);
+
+    useEffect(() => {
+        const tabId = Number.parseInt(UrlUtils.getUrlParam('tab'))
+        setActiveTab(tabId)
+    }, []);
+
+    const onTabChange = (tabId: number) => {
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set('tab', tabId)
+
+        let path;
+        switch (tabId) {
+            case (CvTabs.AboutMe):
+                path = '/curriculum/about-me';
+                break;
+            case (CvTabs.Skills):
+                path = '/curriculum/skills'
+                break
+            case (CvTabs.Experience):
+                path = '/curriculum/experience';
+                break;
+            case (CvTabs.Training):
+                path = '/curriculum/training';
+                break;
+            case (CvTabs.Links):
+                path = '/curriculum/links';
+                break;
+            default:
+                path = '/curriculum/about-me';
+                break;
+        }
+
+        navigate(`${path}?${urlParams}`)
+    }
 
     return (
         <CvWindow title="Curriculum">
@@ -17,25 +53,15 @@ export const Curriculum: React.FC<CurriculumProps> = (props): React.ReactElement
                                 Unsure how to ignore that warning or extend Monitor to support className. */}
                 {/* @ts-ignore */}
                 <Monitor className='background-element'>
-                    <StaticImage class='v-full' src='../../../static/assets/avatar.png'></StaticImage>
+                    <StaticImage class='v-full' src='../../../static/assets/avatar.png' alt='Profile picture'/>
                 </Monitor>
 
-                <Tabs value={activeTab} onChange={setActiveTab}>
-                    <Link to={`/curriculum/about-me${window.location.search}`}>
-                        <Tab value={CvTabs.AboutMe}>About Me</Tab>
-                    </Link>
-                    <Link to={`/curriculum/skills${window.location.search}`}>
-                        <Tab value={CvTabs.Skills}>Skills</Tab>
-                    </Link>
-                    <Link to={`/curriculum/experience${window.location.search}`}>
-                        <Tab value={CvTabs.Experience}>Experience</Tab>
-                    </Link>
-                    <Link to={`/curriculum/training${window.location.search}`}>
-                        <Tab value={CvTabs.Training}>Training</Tab>
-                    </Link>
-                    <Link to={`/curriculum/links${window.location.search}`}>
-                        <Tab value={CvTabs.Links}>Links</Tab>
-                    </Link>
+                <Tabs value={activeTab} onChange={onTabChange}>
+                    <Tab value={CvTabs.AboutMe}>About Me</Tab>
+                    <Tab value={CvTabs.Skills}>Skills</Tab>
+                    <Tab value={CvTabs.Experience}>Experience</Tab>
+                    <Tab value={CvTabs.Training}>Training</Tab>
+                    <Tab value={CvTabs.Links}>Links</Tab>
                 </Tabs>
                 <TabBody>
                     <GroupBox>
