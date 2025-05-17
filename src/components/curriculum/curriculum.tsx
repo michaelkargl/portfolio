@@ -2,27 +2,31 @@
 import {GroupBox, Monitor, Tab, TabBody, Tabs} from "react95";
 import {CvTabs} from "../../models";
 import {CvWindow} from "./cvWindow";
-import {Link, navigate} from "gatsby";
+import {navigate} from "gatsby";
 import {StaticImage} from "gatsby-plugin-image";
 import {UrlUtils} from "../../utils/UrlUtils";
+import {URLParams} from "../../constants";
 
 export type CurriculumProps = PropsWithChildren<{}>
 
-
 export const Curriculum: React.FC<CurriculumProps> = (props): React.ReactElement => {
-    const [activeTab, setActiveTab] = React.useState<number>(-1);
+    const [activeTab, setActiveTab] = React.useState<number>(CvTabs.None);
 
     useEffect(() => {
-        const tabId = Number.parseInt(UrlUtils.getUrlParam('tab'))
+        const tabIdParamValue = UrlUtils.getUrlParam(URLParams.Curriculum.Tab);
+        const tabId = tabIdParamValue === null ? CvTabs.None : Number.parseInt(tabIdParamValue);
         setActiveTab(tabId)
     }, []);
 
     const onTabChange = (tabId: number) => {
         const urlParams = new URLSearchParams(window.location.search);
-        urlParams.set('tab', tabId)
+        urlParams.set(URLParams.Curriculum.Tab, tabId.toString())
 
         let path;
         switch (tabId) {
+            case (CvTabs.None):
+                path = './';
+                break;
             case (CvTabs.AboutMe):
                 path = '/curriculum/about-me';
                 break;
