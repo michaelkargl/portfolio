@@ -5,3 +5,15 @@ div[role="tablist"] div:nth-of-type(1) {
   flex: none !important;
   display: block;
 }
+
+
+// GroupBox
+// Force content to stay within the confines of its parent
+.sc-fMGxnE {
+  max-width: 100%;
+  display: contents;
+
+  pre {
+    overflow-x: auto;
+  }
+}

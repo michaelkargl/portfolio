@@ -14,8 +14,6 @@ export const SkillsPage: React.FC<PageProps<Queries.SkillQuery>> = ({data}) => {
                 <>
                     <MarkdownContent>{frontMatter?.skillsDescription ?? '-'}</MarkdownContent>
                     <hr/>
-                    <img src='./assets/wordcloud.svg'/>
-                    <hr/>
                     <GroupBox label='Timed Skills'>
                         <SkillsView skillsJson={frontMatter?.skillsByTime ?? '-'}/>
                     </GroupBox>

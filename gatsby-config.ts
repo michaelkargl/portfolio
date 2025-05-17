@@ -21,7 +21,14 @@ const config: GatsbyConfig = {
         {
             resolve: "gatsby-transformer-remark",
             options: {
-                plugins: [],
+                plugins: [
+                    {
+                        resolve: `gatsby-remark-relative-images-v2`,
+                        options: {
+                            staticFolderName: 'static',
+                        }
+                    },
+                ],
 
             },
         },
