@@ -1,0 +1,21 @@
+﻿
+.desktop-icon-component {
+  display: inline-block;
+  padding: 0.2em;
+
+  .desktop-icon-container {
+    padding: 0.3em;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      border: 2px dotted #fff;
+    }
+
+    & * {
+      // center all elements within the container (icon + text)
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
