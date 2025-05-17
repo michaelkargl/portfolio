@@ -1,10 +1,11 @@
 ﻿import React, {ReactElement} from "react";
 import {AppBar, MenuListItem, Separator, Toolbar} from "react95";
 import {MenuButton} from "./menu-button";
-import './app-menu-bar.scss'
 import {ThemePicker} from "./theme-picker";
 import {ALL_THEMES, React95Theme} from "../../utils/React95Theme";
 import {Link} from "gatsby";
+import {Desktop, User, Gcdef100} from "@react95/icons";
+import './app-menu-bar.scss'
 
 
 export interface AppMenuBarProps {
@@ -20,24 +21,26 @@ export const AppMenuBar: React.FC<AppMenuBarProps> = (props): ReactElement => {
             <div className='app-bar-component--toolbar-content'>
                 <MenuButton>
                     <>
-                        <Link to='/'>
+                        <Link to={`/${window.location.search}`}>
                             <MenuListItem>
-                                <span role='img' aria-label='🏠'>🏠</span>
+                                <span role='img' aria-label='desktop'><Desktop variant="16x16_4"/></span>
                                 Home
                             </MenuListItem>
                         </Link>
-
-                        <Link to='/paint'>
+                        <Link to={`/curriculum/about-me${window.location.search}`}>
                             <MenuListItem>
-                                <span role='img' aria-label='🎨'>🎨</span>
-                                Paint
+                                <span role='img' aria-label='curriculum'><User variant='16x16_4'/></span>
+                                &nbsp; About me
                             </MenuListItem>
                         </Link>
-                        <Separator/>
-                        <MenuListItem disabled>
-                            <span role='img' aria-label='🔙'>🔙</span>
-                            Logout
-                        </MenuListItem>
+                        <Link to={`/projects${window.location.search}`}>
+                            <MenuListItem>
+                                <span role='img' aria-label='projects'>
+                                    <Gcdef100 variant="16x16_4"/>
+                                    &nbsp; Projects
+                                </span>
+                            </MenuListItem>
+                        </Link>
                     </>
                 </MenuButton>
             </div>

@@ -36,6 +36,7 @@
     "@mdx-js/react": "^3.1.0",
     "@reach/router": "^1.0.0",
     "@react95/clippy": "^2.0.2",
+    "@react95/icons": "^2.1.1",
     "decap-cms-app": "^3.6.2",
     "gatsby": "^5.0.0",
     "gatsby-plugin-decap-cms": "^4.0.4",

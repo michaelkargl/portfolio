@@ -2786,6 +2786,11 @@
   dependencies:
     clippyts "^1.0.4"
 
+"@react95/icons@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@react95/icons/-/icons-2.1.1.tgz#54ba7f45285ea437f146b365312799be21c0f1d8"
+  integrity sha512-yWwnaHHFXZ81aN9HuLtOOOGZf4I54CtD0dufnmF07eWax6zQfP9qgnbZZMO2LdSWs4eufnmiWJc5ae/hG8VvzA==
+
 "@reduxjs/toolkit@^1.9.1":
   version "1.9.7"
   resolved "https://registry.yarnpkg.com/@reduxjs/toolkit/-/toolkit-1.9.7.tgz#7fc07c0b0ebec52043f8cb43510cf346405f78a6"
