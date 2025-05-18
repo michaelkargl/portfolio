@@ -46,3 +46,22 @@ collections:
       - { name: description, label: Description, widget: markdown }
       - { name: skills, label: Skills, widget: list }
       - { name: image, label: Image, widget: image, required: false }
+  - name: projects
+    label: Projects
+    label_singular: Project
+    folder: src/cms/projects
+    create: true
+    fields:
+      - { name: type, label: Type, widget: hidden, default: "project" }
+      - { name: id, label: ID }
+      - { name: name, label: Name }
+      - { name: description, label: Description, widget: markdown }
+      - { name: url, label: URL }
+      - name: parentId
+        label: Parent
+        widget: relation
+        collection: projects
+        search_fields: [ "name" ]
+        value_field: id
+        display_fields: [ "id", "name" ]
+        required: false

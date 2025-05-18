@@ -1,4 +1,8 @@
 ﻿
 export interface Project {
-    name: string
+    id: string,
+    children: Project[],
+    name: string,
+    description: string,
+    url: URL
 }
