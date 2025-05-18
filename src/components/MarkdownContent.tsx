@@ -1,6 +1,6 @@
 ﻿import React, {AnchorHTMLAttributes, ImgHTMLAttributes, PropsWithChildren, ReactElement} from 'react';
 import {Remark} from "react-remark";
-import {withPrefix} from "gatsby";
+import {graphql, withPrefix} from "gatsby";
 import {Anchor} from "react95";
 
 interface MarkdownContentProps {
@@ -23,7 +23,8 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = (props) => (
             rehypeReactOptions={{
                 components: {
                     img: (props: ImgHTMLAttributes<unknown>) => (<PrefixedMarkdownImg {...props} />),
-                    a: (props: AnchorHTMLAttributes<unknown>) => (<Anchor {...props} target='_blank'>{props.children}</Anchor>)
+                    a: (props: AnchorHTMLAttributes<unknown>) => (
+                        <Anchor {...props} target='_blank'>{props.children}</Anchor>)
                 }
             }}>{props.children}</Remark>
     </div>

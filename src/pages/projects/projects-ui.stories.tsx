@@ -18,20 +18,14 @@ function buildDummyProject(id: string, projectBuilder: ProjectBuilder): ProjectB
 
 export const ProjectUiStory: Story = {
     args: {
-        projects: [
+        project:
             new ProjectBuilder('1')
                 .withName('Project 1')
                 .withChild('1.1', builder => buildDummyProject('1.1', builder))
-                .withChild('1.2', builder => buildDummyProject('1.2', builder))
-                .build(),
-            new ProjectBuilder('2')
-                .withName('Project 2')
-                .withChild('2.1', builder =>
-                    buildDummyProject('2.1', builder)
-                        .withChild('2.1.1', builder => buildDummyProject('2.1.1', builder))
-                )
+                .withChild('1.2', builder =>
+                    buildDummyProject('1.2', builder)
+                        .withChild('1.2.1', builder => buildDummyProject('1.2.1', builder)))
                 .build()
-        ]
     }
 }
 

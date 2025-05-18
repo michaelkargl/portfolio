@@ -18,7 +18,8 @@ type ProjectsUiProps = {
      *  P2.1  P2.2
      *        ...
      */
-    projects: Project
+    project: Project,
+    closeBtnLinkPath: string
 }
 
 /**
@@ -39,14 +40,14 @@ const ProjectsUi: React.FC<ProjectsUiProps> = (props): ReactElement => {
     const [tree, setTree] = React.useState<TreeLeaf<string>[]>([] as TreeLeaf<string>[]);
 
     useEffect(() => {
-        setTree(
-            props.projects.map(mapProjectToTreeElement)
-        );
+        setTree([
+            mapProjectToTreeElement(props.project)
+        ]);
     }, [])
 
     return (<div className='project-ui-component'>
         <Layout>
-            <DesktopWindowUi title='Projects'>
+            <DesktopWindowUi title='Projects' closeLinkPath={props.closeBtnLinkPath}>
                 <TreeView tree={tree}/>
             </DesktopWindowUi>
         </Layout>
