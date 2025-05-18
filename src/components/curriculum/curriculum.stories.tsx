@@ -14,6 +14,7 @@ type Story = StoryObj<typeof Curriculum>;
 
 export const CurriculumStory : Story = {
     args: {
+        // @ts-ignore
         title: "Curriculum",
         links: "Links",
         aboutMe: "About me",

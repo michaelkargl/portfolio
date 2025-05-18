@@ -51,7 +51,7 @@ export const Curriculum: React.FC<CurriculumProps> = (props): React.ReactElement
     }
 
     return (
-        <DesktopWindowUi title="Curriculum">
+        <DesktopWindowUi title="Curriculum" closeLinkPath='/'>
             <div className="index-component--introduction">
                 {/* This is necessary to not have the menu overlap with the monitor.
                                 Unsure how to ignore that warning or extend Monitor to support className. */}
