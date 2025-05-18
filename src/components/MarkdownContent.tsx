@@ -1,6 +1,7 @@
-﻿import React, {ImgHTMLAttributes, PropsWithChildren, ReactElement} from 'react';
+﻿import React, {AnchorHTMLAttributes, ImgHTMLAttributes, PropsWithChildren, ReactElement} from 'react';
 import {Remark} from "react-remark";
 import {withPrefix} from "gatsby";
+import {Anchor} from "react95";
 
 interface MarkdownContentProps {
     children: string;
@@ -21,7 +22,8 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = (props) => (
             remarkToRehypeOptions={{allowDangerousHtml: true}}
             rehypeReactOptions={{
                 components: {
-                    img: (props: ImgHTMLAttributes<unknown>) => (<PrefixedMarkdownImg {...props} />)
+                    img: (props: ImgHTMLAttributes<unknown>) => (<PrefixedMarkdownImg {...props} />),
+                    a: (props: AnchorHTMLAttributes<unknown>) => (<Anchor {...props} target='_blank'>{props.children}</Anchor>)
                 }
             }}>{props.children}</Remark>
     </div>
