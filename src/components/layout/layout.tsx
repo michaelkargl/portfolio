@@ -10,7 +10,7 @@ import {CvSkillParserContext} from "../../contexts/cv-skill-parser-context";
 import {IocModule, IoCSymbol} from "../../ioc";
 import {ICvSkillParser} from "../../parser";
 import {Clock} from "../clock";
-import {UrlUtils} from "../../utils/UrlUtils";
+import {UrlUtils} from "../../utils";
 import {URLParams} from "../../constants";
 
 const container = new IocModule()

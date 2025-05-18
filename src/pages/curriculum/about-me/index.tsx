@@ -1,7 +1,7 @@
 ﻿import React from "react";
-import {Layout} from "../../components";
-import {Curriculum} from "../../components/curriculum/curriculum";
-import {MarkdownContent} from "../../components/MarkdownContent";
+import {Layout} from "../../../components";
+import {Curriculum} from "../../../components/curriculum/curriculum";
+import {MarkdownContent} from "../../../components/MarkdownContent";
 import {graphql, type PageProps} from "gatsby"
 
 const AboutMePage: React.FC<PageProps<Queries.AboutMeQuery>> = ({data}) => {
