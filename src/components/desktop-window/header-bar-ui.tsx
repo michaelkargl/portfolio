@@ -2,7 +2,7 @@
 import {ReactElement} from "react";
 import {Button, Toolbar} from "react95";
 
-export const HeaderBar: React.FC = (): ReactElement => (
+export const HeaderBarUi: React.FC = (): ReactElement => (
     <Toolbar className='header-bar--component'>
         <Button variant='menu' size='sm' disabled>
             File

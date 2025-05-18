@@ -1,10 +1,10 @@
 ﻿import React, {PropsWithChildren, useEffect} from "react";
 import {GroupBox, Monitor, Tab, TabBody, Tabs} from "react95";
 import {CvTabs} from "../../models";
-import {CvWindow} from "./cvWindow";
+import {DesktopWindowUi} from "../desktop-window/desktop-window-ui";
 import {navigate} from "gatsby";
 import {StaticImage} from "gatsby-plugin-image";
-import {UrlUtils} from "../../utils/UrlUtils";
+import {UrlUtils} from "../../utils";
 import {URLParams} from "../../constants";
 
 export type CurriculumProps = PropsWithChildren<{}>
@@ -51,7 +51,7 @@ export const Curriculum: React.FC<CurriculumProps> = (props): React.ReactElement
     }
 
     return (
-        <CvWindow title="Curriculum">
+        <DesktopWindowUi title="Curriculum">
             <div className="index-component--introduction">
                 {/* This is necessary to not have the menu overlap with the monitor.
                                 Unsure how to ignore that warning or extend Monitor to support className. */}
@@ -73,6 +73,6 @@ export const Curriculum: React.FC<CurriculumProps> = (props): React.ReactElement
                     </GroupBox>
                 </TabBody>
             </div>
-        </CvWindow>
+        </DesktopWindowUi>
     );
 };

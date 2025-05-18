@@ -1,6 +1,5 @@
 ﻿import React, {ReactElement} from "react";
 import {Experience} from "./models";
-import {DateTime} from "luxon";
 import {Layout} from "../../../components";
 import {Curriculum} from "../../../components/curriculum/curriculum";
 
