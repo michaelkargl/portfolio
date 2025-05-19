@@ -7,7 +7,9 @@ import {StaticImage} from "gatsby-plugin-image";
 import {UrlUtils} from "../../utils";
 import {URLParams} from "../../constants";
 
-export type CurriculumProps = PropsWithChildren<{}>
+export type CurriculumProps = PropsWithChildren<{
+    title: string;
+}>
 
 export const Curriculum: React.FC<CurriculumProps> = (props): React.ReactElement => {
     const [activeTab, setActiveTab] = React.useState<number>(CvTabs.None);
@@ -51,7 +53,7 @@ export const Curriculum: React.FC<CurriculumProps> = (props): React.ReactElement
     }
 
     return (
-        <DesktopWindowUi title="Curriculum" closeLinkPath='/'>
+        <DesktopWindowUi title={props.title} closeLinkPath='/'>
             <div className="index-component--introduction">
                 {/* This is necessary to not have the menu overlap with the monitor.
                                 Unsure how to ignore that warning or extend Monitor to support className. */}

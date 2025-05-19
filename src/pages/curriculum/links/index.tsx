@@ -8,7 +8,7 @@ export const LinksPage: React.FC<PageProps<Queries.LinksQuery>> = ({data}) => {
     const frontMatter = data?.allMarkdownRemark.edges[0]?.node.frontmatter;
     return (
         <Layout>
-            <Curriculum>
+            <Curriculum title='Curriculum / Links'>
                 <MarkdownContent>{frontMatter?.links ?? '-'}</MarkdownContent>
             </Curriculum>
         </Layout>

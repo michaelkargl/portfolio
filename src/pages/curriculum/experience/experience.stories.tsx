@@ -5,6 +5,7 @@ import {DateTime} from "luxon";
 
 
 const meta: Meta<typeof ExperienceUi> = {
+    tags: ["autodocs"],
     component: ExperienceUi
 }
 

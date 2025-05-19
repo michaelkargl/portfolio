@@ -8,7 +8,7 @@ export const TrainingPage: React.FC<PageProps<Queries.TrainingsQuery>> = (props)
     const frontMatter = props.data?.allMarkdownRemark.edges[0]?.node.frontmatter;
     return (
         <Layout>
-            <Curriculum>
+            <Curriculum title='Curriculum / Training'>
                 <MarkdownContent>{frontMatter?.training ?? '-'}</MarkdownContent>
             </Curriculum>
         </Layout>

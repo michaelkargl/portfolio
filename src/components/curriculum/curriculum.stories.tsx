@@ -6,21 +6,17 @@ import React from "react";
 //👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof Curriculum> = {
     component: Curriculum,
+    tags: ["autodocs"],
     render: (args) => (<Layout><Curriculum {...args}/></Layout>)
 }
 
 type Story = StoryObj<typeof Curriculum>;
 
 
-export const CurriculumStory : Story = {
+export const CurriculumStory: Story = {
     args: {
         // @ts-ignore
-        title: "Curriculum",
-        links: "Links",
-        aboutMe: "About me",
-        skillsByTimeJson: '[{ "name": "C", "percent": 67 }]',
-        skillsByScoreJson: '[{ "name": "Backend", "percent": 67 }]',
-        monitorImage: "/assets/avatar.png"
+        title: "Curriculum"
     }
 }
 export default meta;

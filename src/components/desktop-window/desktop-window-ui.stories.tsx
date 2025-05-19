@@ -7,6 +7,7 @@ import React from "react";
 
 const meta: Meta<typeof DesktopWindowUi> = {
     component: DesktopWindowUi,
+    tags: ["autodocs"],
     args: {
         title: "Desktop Window",
     },

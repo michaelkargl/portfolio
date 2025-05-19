@@ -36,6 +36,21 @@ function mapProjectToTreeElement(project: Project): TreeLeaf<string> {
 }
 
 
+/**
+ * @summary The UI component for the Projects page. It allows the browsing of projects in a grouped view. <br/>
+ * @props ProjectsUiProps: contains the root project to be rendered.
+ * <br/><br/>
+ * One root project that unifies a hierarchy of projects
+ * <pre>
+ *   root
+ *    / \
+ *   P1  P2
+ *      /  \
+ *  P2.1  P2.2
+ *           \
+ *           P2.2.1
+ * </pre>
+ */
 const ProjectsUi: React.FC<ProjectsUiProps> = (props): ReactElement => {
     const [tree, setTree] = React.useState<TreeLeaf<string>[]>([] as TreeLeaf<string>[]);
 

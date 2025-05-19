@@ -11,7 +11,7 @@ export type ExperienceUiProps = {
 export const ExperienceUi: React.FC<ExperienceUiProps> = (props: ExperienceUiProps): ReactElement => {
     return <div className='experience-ui-component'>
         <Layout>
-            <Curriculum>
+            <Curriculum title='Curriculum / Experience'>
                 <ul>
                     {props.experiences.map((job: any, index: number) => {
                         const diff = job.to.diff(job.from, ['years', 'months']).toObject()

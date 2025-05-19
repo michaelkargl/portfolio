@@ -8,7 +8,7 @@ const AboutMePage: React.FC<PageProps<Queries.AboutMeQuery>> = ({data}) => {
     const frontMatter = data?.allMarkdownRemark.edges[0]?.node.frontmatter;
     return (
         <Layout>
-            <Curriculum>
+            <Curriculum title='Curriculum / About Me'>
                 <>
                     <MarkdownContent>{frontMatter?.aboutMe ?? '---'}</MarkdownContent>
                     <MarkdownContent>{frontMatter?.links ?? '---'}</MarkdownContent>

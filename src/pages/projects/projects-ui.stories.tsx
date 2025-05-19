@@ -4,6 +4,8 @@ import {ProjectBuilder} from "./builder/project-builder";
 
 
 const meta: Meta<typeof ProjectsUi> = {
+    title: "Projects Ui",
+    tags: ["autodocs"],
     component: ProjectsUi
 }
 
