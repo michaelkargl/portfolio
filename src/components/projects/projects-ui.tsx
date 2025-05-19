@@ -1,9 +1,8 @@
 ﻿import React, {ReactElement, useEffect} from "react";
 import {Layout} from "../../components";
 import {Project} from "./models/Project";
-import {DesktopWindowUi} from "../../components/desktop-window/desktop-window-ui";
+import {DesktopWindowUi} from "../desktop-window/desktop-window-ui";
 import {TreeView} from "react95";
-import projects from "./index";
 import {TreeLeaf} from "react95/dist/TreeView/TreeView";
 
 type ProjectsUiProps = {

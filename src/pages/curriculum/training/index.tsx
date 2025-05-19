@@ -1,18 +1,10 @@
 ﻿import React from "react";
-import {Layout} from "../../../components";
-import {Curriculum} from "../../../components/curriculum/curriculum";
 import {graphql, PageProps} from "gatsby";
-import {MarkdownContent} from "../../../components/MarkdownContent";
+import {TrainingUi} from "../../../components/curriculum/training/training-ui";
 
 export const TrainingPage: React.FC<PageProps<Queries.TrainingsQuery>> = (props) => {
-    const frontMatter = props.data?.allMarkdownRemark.edges[0]?.node.frontmatter;
-    return (
-        <Layout>
-            <Curriculum title='Curriculum / Training'>
-                <MarkdownContent>{frontMatter?.training ?? '-'}</MarkdownContent>
-            </Curriculum>
-        </Layout>
-    );
+    const matter = props.data?.allMarkdownRemark.edges[0]?.node.frontmatter;
+    return <TrainingUi training={matter?.training ?? '-'}/>
 }
 
 export const trainingsQuery = graphql`

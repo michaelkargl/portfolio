@@ -17,7 +17,7 @@ const PrefixedMarkdownImg: React.FC = (props: ImgHTMLAttributes<unknown>): React
 export const MarkdownContent: React.FC<MarkdownContentProps> = (props) => (
     // allowDangerousHtml is necessary for custom markdown->element mapping to work
     // rehypeReactOptions.component: custom mapping from markdown element -> component
-    <div className="markdown-content">=
+    <div className="markdown-content">
         <Remark
             remarkToRehypeOptions={{allowDangerousHtml: true}}
             rehypeReactOptions={{

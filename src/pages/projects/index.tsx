@@ -1,7 +1,7 @@
 ﻿import {graphql, PageProps} from "gatsby"
 import React, {ReactElement, useEffect, useState} from "react";
-import ProjectsUi from "./projects-ui";
-import {Project} from "./models/Project";
+import {Project} from "../../components/projects/models/Project";
+import ProjectsUi from "../../components/projects/projects-ui";
 
 function mapQueryProjectToDomain(project: any): Project {
     // maps the graphql project response to a project entity

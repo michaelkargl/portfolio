@@ -1,10 +1,8 @@
 ﻿import React from "react";
-import {Layout} from "../../../components";
-import {Curriculum} from "../../../components/curriculum/curriculum";
 import {graphql, type PageProps} from "gatsby";
 import {DateTime} from "luxon";
-import {ExperienceUi} from "./experience-ui";
-import {Experience} from "./models";
+import { ExperienceUi } from "../../../components/curriculum/experience/experience-ui";
+import { Experience } from "../../../components/curriculum/experience/models";
 
 
 function mapQueryToExperiences(query: Queries.JobsQuery): Experience[] {
