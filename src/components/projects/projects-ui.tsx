@@ -4,6 +4,7 @@ import {Project} from "./models/Project";
 import {DesktopWindowUi} from "../desktop-window/desktop-window-ui";
 import {TreeView} from "react95";
 import {TreeLeaf} from "react95/dist/TreeView/TreeView";
+import projects from "../../pages/projects";
 
 type ProjectsUiProps = {
     /**
@@ -34,6 +35,20 @@ function mapProjectToTreeElement(project: Project): TreeLeaf<string> {
     };
 }
 
+function findProject(project: Project, id: string): Project | null {
+    if (project.id === id) {
+        return project;
+    }
+
+    for (let child of project.children ?? []) {
+        const project = findProject(child, id);
+        if (project) {
+            return project;
+        }
+    }
+
+    return null;
+}
 
 /**
  * @summary The UI component for the Projects page. It allows the browsing of projects in a grouped view. <br/>
@@ -52,6 +67,8 @@ function mapProjectToTreeElement(project: Project): TreeLeaf<string> {
  */
 const ProjectsUi: React.FC<ProjectsUiProps> = (props): ReactElement => {
     const [tree, setTree] = React.useState<TreeLeaf<string>[]>([] as TreeLeaf<string>[]);
+    const [project, setProject] = React.useState<Project | null>(null);
+    const [expandedIds, setExpandedIds] = React.useState<string[]>([]);
 
     useEffect(() => {
         setTree([
@@ -59,10 +76,25 @@ const ProjectsUi: React.FC<ProjectsUiProps> = (props): ReactElement => {
         ]);
     }, [])
 
+    const selectProject = (searchRoot: Project, id: string) => {
+        const project = findProject(searchRoot, id);
+        setProject(project)
+    }
+
     return (<div className='project-ui-component'>
         <Layout>
-            <DesktopWindowUi title='Projects' closeLinkPath={props.closeBtnLinkPath}>
-                <TreeView tree={tree}/>
+            <DesktopWindowUi
+                title='Projects'
+                closeLinkPath={props.closeBtnLinkPath}>
+                <TreeView
+                    tree={tree}
+                    defaultExpanded={[props.project.id]}
+                    onNodeSelect={(_, id) => selectProject(props.project, id)}
+                />
+
+                <pre>
+                    {JSON.stringify(project, null, 2)}
+                </pre>
             </DesktopWindowUi>
         </Layout>
     </div>)
