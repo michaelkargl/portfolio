@@ -1,4 +1,5 @@
 ﻿import React, {ReactElement} from "react";
+import {DateTime} from "luxon";
 import {Experience} from "./models";
 import {Layout} from "../../../components";
 import {Curriculum} from "../../../components/curriculum/curriculum";
@@ -14,7 +15,8 @@ export const ExperienceUi: React.FC<ExperienceUiProps> = (props: ExperienceUiPro
             <Curriculum title='Curriculum / Experience'>
                 <ul>
                     {props.experiences.map((job: any, index: number) => {
-                        const diff = job.to.diff(job.from, ['years', 'months']).toObject()
+                        const endDate = job.to ?? DateTime.now()
+                        const diff = endDate.diff(job.from, ['years', 'months']).toObject()
                         return (
                             <li key={`job-${index}`}>
                                 <u>{job?.name ?? '-'}</u>
