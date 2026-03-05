@@ -1,6 +1,6 @@
 ---
 type: job
-name: Zühlke Austria1
+name: Zühlke Austria
 role: Software Engineer
 from: 2018-01-01T00:00:00.000Z
 to: 2025-05-12T21:09:00.000Z
