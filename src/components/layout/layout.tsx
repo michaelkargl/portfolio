@@ -42,13 +42,17 @@ const ThemedBackground = styled.div`
     background: ${(styling: any) => styling.theme.desktopBackground};
 `;
 
+const DEFAULT_THEME_KEY: keyof typeof React95Theme = 'Plum';
 
 export const Layout: React.FC<PropsWithChildren<{}>> = (props): ReactElement => {
     const [react95Theme, setReact95Theme] = useState<any>(undefined)
+    const [selectedThemeKey, setSelectedThemeKey] = useState<string>(
+        UrlUtils.getUrlParam(URLParams.Theme.Theme) ?? DEFAULT_THEME_KEY
+    )
 
     useEffect(() => {
         const loadThemeAsync = async () => {
-            const themeSelection = UrlUtils.getUrlParam(URLParams.Theme.Theme) ?? React95Theme.Original
+            const themeSelection = UrlUtils.getUrlParam(URLParams.Theme.Theme);
             const theme = await importReact95ThemeAsync(themeSelection);
             setReact95Theme(theme)
         }
@@ -61,10 +65,11 @@ export const Layout: React.FC<PropsWithChildren<{}>> = (props): ReactElement => 
             return
         }
         UrlUtils.setUrlParam(URLParams.Theme.Theme, themeName);
+        setSelectedThemeKey(themeName);
     }
 
-    async function importReact95ThemeAsync(targetTheme: string): Promise<void> {
-        const themeName = (React95Theme as any)[targetTheme] ?? 'original';
+    async function importReact95ThemeAsync(targetTheme: string | null): Promise<void> {
+        const themeName = (React95Theme as any)[targetTheme ?? DEFAULT_THEME_KEY] ?? React95Theme.Plum;
         return await import(`react95/dist/themes/${themeName}`);
     }
 
@@ -78,7 +83,8 @@ export const Layout: React.FC<PropsWithChildren<{}>> = (props): ReactElement => 
 
                             <div className="main-frame">
                                 <header>
-                                    <AppMenuBar themePicked={t => setThemeUrlParam(t)}/>
+                                    <AppMenuBar selectedTheme={selectedThemeKey}
+                                               themePicked={t => setThemeUrlParam(t)}/>
                                 </header>
                                 <div className='main-content'>
                                     <main>

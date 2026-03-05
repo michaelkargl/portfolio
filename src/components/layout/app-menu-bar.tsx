@@ -10,6 +10,7 @@ import {UrlUtils} from "../../utils";
 
 
 export interface AppMenuBarProps {
+    selectedTheme: string;
     themePicked: (theme: React95Theme) => void;
 }
 
@@ -49,6 +50,7 @@ export const AppMenuBar: React.FC<AppMenuBarProps> = (props): ReactElement => {
             {/* @ts-ignore */}
             <ThemePicker className='app-bar-component--toolbar-search'
                          themes={ALL_THEMES}
+                         selectedTheme={props.selectedTheme}
                          themePicked={props.themePicked}/>
         </Toolbar>
     </AppBar>);
