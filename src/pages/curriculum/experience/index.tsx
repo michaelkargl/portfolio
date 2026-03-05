@@ -16,7 +16,8 @@ function mapQueryToExperiences(query: Queries.JobsQuery): Experience[] {
                 role: m?.role,
                 description: m?.description,
             } as Experience)
-        );
+        )
+        .sort((a, b) => b.to.toMillis() - a.to.toMillis());
 }
 
 export const ExperiencePage: React.FC<PageProps<Queries.JobsQuery>> = ({data}) => {
