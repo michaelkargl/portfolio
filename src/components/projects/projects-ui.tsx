@@ -2,9 +2,9 @@
 import {Layout} from "../../components";
 import {Project} from "./models/Project";
 import {DesktopWindowUi} from "../desktop-window/desktop-window-ui";
-import {TreeView} from "react95";
+import {Anchor, Table, TableBody, TableDataCell, TableRow, TreeView} from "react95";
 import {TreeLeaf} from "react95/dist/TreeView/TreeView";
-import projects from "../../pages/projects";
+import './projects-ui.scss';
 
 type ProjectsUiProps = {
     /**
@@ -50,30 +50,54 @@ function findProject(project: Project, id: string): Project | null {
     return null;
 }
 
-/**
- * @summary The UI component for the Projects page. It allows the browsing of projects in a grouped view. <br/>
- * @props ProjectsUiProps: contains the root project to be rendered.
- * <br/><br/>
- * One root project that unifies a hierarchy of projects
- * <pre>
- *   root
- *    / \
- *   P1  P2
- *      /  \
- *  P2.1  P2.2
- *           \
- *           P2.2.1
- * </pre>
- */
+const ProjectDetail: React.FC<{ project: Project }> = ({project}) => (
+    <div className='projects-detail-panel'>
+        <Table>
+            <TableBody>
+                <TableRow>
+                    <TableDataCell><strong>Name</strong></TableDataCell>
+                    <TableDataCell>{project.name}</TableDataCell>
+                </TableRow>
+                <TableRow>
+                    <TableDataCell><strong>Description</strong></TableDataCell>
+                    <TableDataCell>{project.description}</TableDataCell>
+                </TableRow>
+                {project.url && (
+                    <TableRow>
+                        <TableDataCell><strong>Link</strong></TableDataCell>
+                        <TableDataCell>
+                            <Anchor href={project.url.toString()} target='_blank'>
+                                {project.url.toString()}
+                            </Anchor>
+                        </TableDataCell>
+                    </TableRow>
+                )}
+                {project.children?.length > 0 && (
+                    <TableRow>
+                        <TableDataCell><strong>Sub-projects</strong></TableDataCell>
+                        <TableDataCell>
+                            {project.children.map(child => child.name).join(', ')}
+                        </TableDataCell>
+                    </TableRow>
+                )}
+            </TableBody>
+        </Table>
+    </div>
+);
+
 const ProjectsUi: React.FC<ProjectsUiProps> = (props): ReactElement => {
     const [tree, setTree] = React.useState<TreeLeaf<string>[]>([] as TreeLeaf<string>[]);
     const [project, setProject] = React.useState<Project | null>(null);
-    const [expandedIds, setExpandedIds] = React.useState<string[]>([]);
 
     useEffect(() => {
         setTree([
             mapProjectToTreeElement(props.project)
         ]);
+
+        const firstChild = props.project.children?.[0];
+        if (firstChild) {
+            setProject(firstChild);
+        }
     }, [])
 
     const selectProject = (searchRoot: Project, id: string) => {
@@ -86,15 +110,16 @@ const ProjectsUi: React.FC<ProjectsUiProps> = (props): ReactElement => {
             <DesktopWindowUi
                 title='Projects'
                 closeLinkPath={props.closeBtnLinkPath}>
-                <TreeView
-                    tree={tree}
-                    defaultExpanded={[props.project.id]}
-                    onNodeSelect={(_, id) => selectProject(props.project, id)}
-                />
-
-                <pre>
-                    {JSON.stringify(project, null, 2)}
-                </pre>
+                <div className='projects-explorer'>
+                    <div className='projects-tree-panel'>
+                        <TreeView
+                            tree={tree}
+                            defaultExpanded={[props.project.id]}
+                            onNodeSelect={(_, id) => selectProject(props.project, id)}
+                        />
+                    </div>
+                    {project && <ProjectDetail project={project} />}
+                </div>
             </DesktopWindowUi>
         </Layout>
     </div>)
