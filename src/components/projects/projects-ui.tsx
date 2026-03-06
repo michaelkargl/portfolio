@@ -5,6 +5,8 @@ import {DesktopWindowUi} from "../desktop-window/desktop-window-ui";
 import {Anchor, Table, TableBody, TableDataCell, TableRow, TreeView} from "react95";
 import {TreeLeaf} from "react95/dist/TreeView/TreeView";
 import './projects-ui.scss';
+import Image95 from "../image95/image95";
+
 
 type ProjectsUiProps = {
     /**
@@ -76,7 +78,7 @@ const ProjectDetail: React.FC<{ project: Project }> = ({project}) => (
                     <TableRow>
                         <TableDataCell><strong>Image</strong></TableDataCell>
                         <TableDataCell>
-                            <img src={project.image} alt={project.name} />
+                            <Image95 src={project.image} alt={project.name} />
                         </TableDataCell>
                     </TableRow>
                 )}

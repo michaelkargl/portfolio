@@ -3353,6 +3353,61 @@
   resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-14.5.2.tgz#db7257d727c891905947bd1c1a99da20e03c2ebd"
   integrity sha512-YAh82Wh4TIrxYLmfGcixwD18oIjyC1pFQC2Y01F2lzV2HTMiYrI0nze0FD0ocB//CKS/7jIUgae+adPqxK5yCQ==
 
+"@thi.ng/api@^8.12.14":
+  version "8.12.14"
+  resolved "https://registry.yarnpkg.com/@thi.ng/api/-/api-8.12.14.tgz#9a4f781e7c329483bf1ab70cd4c14ab2320032e4"
+  integrity sha512-AbVvaZcgAv0jx679MCjmTLUleomngealZVpfloDSA/4KRmCVYc8zuJMEXDKPhTlkaB9PvYg7IdJMW4XDvIFE3w==
+
+"@thi.ng/canvas@^1.1.7":
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/@thi.ng/canvas/-/canvas-1.1.7.tgz#8225d7582ac5baacb1f393e08c9c31c33262e567"
+  integrity sha512-ZzfIP3/AwXINaDXUJEPMqH5pm3FDHV85xb489IBG6wOtf1pyjufSvDyy3auHtK2kVE8EyXv1n9yU257jCBHaaA==
+
+"@thi.ng/checks@^3.8.4":
+  version "3.8.4"
+  resolved "https://registry.yarnpkg.com/@thi.ng/checks/-/checks-3.8.4.tgz#a0406f9cff4c52c6c7987110676438b1b0519d7f"
+  integrity sha512-VmUyVd24lL3qz8VUN/+pY8pdBAGi3hUa7TM4W7gs5thddbwJcs048ePArGeNymDCSS5lDX019/iSiHbA7FIwDQ==
+
+"@thi.ng/errors@^2.6.3":
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@thi.ng/errors/-/errors-2.6.3.tgz#efd4085a27ce6bb1ac7649abe2773008ef40a05f"
+  integrity sha512-owkOOKHf7MrAPN2jNpKWDdY/vjtPFiJf6oxZ3jkkhV6ICTu2iY1fXIR2wQ7kVEeybdtb0w24k2PtrU43OYCWdg==
+
+"@thi.ng/math@^5.15.3":
+  version "5.15.3"
+  resolved "https://registry.yarnpkg.com/@thi.ng/math/-/math-5.15.3.tgz#167e017371ce37a9907efa9f6f4d6d5f0dc50f8d"
+  integrity sha512-IjJSoHCrE7ky1vZC/CgTZ9YbYzrKRd4jllsmW4leyF9SHRQHnCWGHKgzWv+lyXck9rZwUFIzQu5G0JWGtiPwew==
+  dependencies:
+    "@thi.ng/api" "^8.12.14"
+
+"@thi.ng/pixel-dither@^1.1.191":
+  version "1.1.191"
+  resolved "https://registry.yarnpkg.com/@thi.ng/pixel-dither/-/pixel-dither-1.1.191.tgz#bc413deeb03bd41761507123b6195869770da707"
+  integrity sha512-0fPfb8MwaDKGPP5Kkf4rELIb0NE9MM+0I96Vsk53HF/o54SJ/+FjieboLPq6Bk5QrPKqT+uehAN4yizVQ4pwVQ==
+  dependencies:
+    "@thi.ng/checks" "^3.8.4"
+    "@thi.ng/math" "^5.15.3"
+    "@thi.ng/pixel" "^7.5.23"
+
+"@thi.ng/pixel@^7.5.23":
+  version "7.5.23"
+  resolved "https://registry.yarnpkg.com/@thi.ng/pixel/-/pixel-7.5.23.tgz#5a69c59f062e16c301e11e150053570bf3ab5f7c"
+  integrity sha512-zLD35AJhJFhucHnqaTOjZLlGqvr8VnrskmjCtgFszB+QITnGlH8nb1S0OK6XVHTKu+nBVOrpd2pBwC58q/2TaQ==
+  dependencies:
+    "@thi.ng/api" "^8.12.14"
+    "@thi.ng/canvas" "^1.1.7"
+    "@thi.ng/checks" "^3.8.4"
+    "@thi.ng/errors" "^2.6.3"
+    "@thi.ng/math" "^5.15.3"
+    "@thi.ng/porter-duff" "^2.1.126"
+
+"@thi.ng/porter-duff@^2.1.126":
+  version "2.1.126"
+  resolved "https://registry.yarnpkg.com/@thi.ng/porter-duff/-/porter-duff-2.1.126.tgz#a44ca7ebe970e600450366a825bc817c594c22ea"
+  integrity sha512-w+imPcFfZVRFV9iKXVGaLeNJnudrvSjiqDYTeIu8tyjApeht2AxgObXhCG6mi6DCi3grU45/l6Mx7FQo2vMmfQ==
+  dependencies:
+    "@thi.ng/api" "^8.12.14"
+
 "@tokenizer/token@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@tokenizer/token/-/token-0.3.0.tgz#fe98a93fe789247e998c75e74e9c7c63217aa276"
@@ -15544,6 +15599,11 @@ rework@1.0.1:
   dependencies:
     convert-source-map "^0.3.3"
     css "^2.0.0"
+
+rgbquant@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/rgbquant/-/rgbquant-1.1.2.tgz#d95e889a8fcb1e6c1a4fa2ccc8be3a41a2fcd185"
+  integrity sha512-AGuKVeUUFW5rhm4Eu/7SXQRSxs3MoXIGKP4i/5Rok89QBrOu9+ytWezuxHhCsHT9Y6z+sGPKL9PKo6X8tZNUaw==
 
 rimraf@^2.6.2:
   version "2.7.1"
