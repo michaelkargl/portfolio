@@ -22,6 +22,8 @@ $breakpoints: (
 }
 
 .projects-tree-panel {
+  flex-shrink: 0;
+
   @include media(">=tablet") {
     min-width: 200px;
     max-width: 35%;
@@ -31,8 +33,27 @@ $breakpoints: (
 
 .projects-detail-panel {
   flex: 1;
+  min-width: 0; // prevent flex child from overflowing
 
-  h3 {
-    margin-bottom: 0.25rem;
+  table {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  td {
+    vertical-align: top;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // label column: fixed narrow width
+  td:first-child {
+    width: 6rem;
+    white-space: nowrap;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
