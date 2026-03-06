@@ -10,6 +10,7 @@ function mapQueryProjectToDomain(project: any): Project {
         name: project.name,
         description: project.description,
         url: project.url,
+        image: project.image ?? undefined,
         children: []
     }
 }
@@ -68,6 +69,7 @@ query Projects {
           name
           url
           description
+          image
           parentId
         }
       }

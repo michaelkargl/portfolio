@@ -57,6 +57,7 @@ collections:
       - { name: name, label: Name }
       - { name: description, label: Description, widget: markdown }
       - { name: url, label: URL }
+      - { name: image, label: Image, widget: image, required: false }
       - name: parentId
         label: Parent
         widget: relation

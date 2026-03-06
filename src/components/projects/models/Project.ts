@@ -4,5 +4,6 @@ export interface Project {
     children: Project[],
     name: string,
     description: string,
-    url: URL
+    url: URL,
+    image?: string
 }

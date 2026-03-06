@@ -23,7 +23,8 @@ export const ProjectUiStory: Story = {
         project:
             new ProjectBuilder('1')
                 .withName('Project 1')
-                .withChild('1.1', builder => buildDummyProject('1.1', builder))
+                .withChild('1.1', builder => buildDummyProject('1.1', builder)
+                    .withImage('https://picsum.photos/seed/project-1.1/300/200'))
                 .withChild('1.2', builder =>
                     buildDummyProject('1.2', builder)
                         .withChild('1.2.1', builder => buildDummyProject('1.2.1', builder)))

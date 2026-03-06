@@ -22,6 +22,11 @@ export class ProjectBuilder {
         return this;
     }
 
+    public withImage(image: string): ProjectBuilder {
+        this.project.image = image;
+        return this;
+    }
+
     public withChild(id: string, builder: ((b: ProjectBuilder) => ProjectBuilder)) {
         const project = builder(new ProjectBuilder(id)).build();
         this.project.children ??= []

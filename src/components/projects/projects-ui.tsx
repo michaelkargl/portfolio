@@ -72,6 +72,14 @@ const ProjectDetail: React.FC<{ project: Project }> = ({project}) => (
                         </TableDataCell>
                     </TableRow>
                 )}
+                {project.image && (
+                    <TableRow>
+                        <TableDataCell><strong>Image</strong></TableDataCell>
+                        <TableDataCell>
+                            <img src={project.image} alt={project.name} />
+                        </TableDataCell>
+                    </TableRow>
+                )}
                 {project.children?.length > 0 && (
                     <TableRow>
                         <TableDataCell><strong>Sub-projects</strong></TableDataCell>
