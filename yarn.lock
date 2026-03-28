@@ -15600,11 +15600,6 @@ rework@1.0.1:
     convert-source-map "^0.3.3"
     css "^2.0.0"
 
-rgbquant@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/rgbquant/-/rgbquant-1.1.2.tgz#d95e889a8fcb1e6c1a4fa2ccc8be3a41a2fcd185"
-  integrity sha512-AGuKVeUUFW5rhm4Eu/7SXQRSxs3MoXIGKP4i/5Rok89QBrOu9+ytWezuxHhCsHT9Y6z+sGPKL9PKo6X8tZNUaw==
-
 rimraf@^2.6.2:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.7.1.tgz#35797f13a7fdadc566142c29d4f07ccad483e3ec"
