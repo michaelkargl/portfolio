@@ -23,17 +23,18 @@ $breakpoints: (
 
 .projects-tree-panel {
   flex-shrink: 0;
+  overflow-x: auto;
 
   @include media(">=tablet") {
     min-width: 200px;
-    max-width: 35%;
+    max-width: 60%;
     overflow-y: auto;
   }
 }
 
 .projects-detail-panel {
   flex: 1;
-  min-width: 0; // prevent flex child from overflowing
+  min-width: 150px;
 
   table {
     table-layout: fixed;
@@ -55,5 +56,20 @@ $breakpoints: (
   img {
     max-width: 100%;
     height: auto;
+  }
+}
+
+// Override global window width for the Projects dialog only
+.project-ui-component .cv-window--component {
+  @include media(">=tablet", "<desktop") {
+    width: 85%;
+  }
+
+  @include media(">=desktop", "<wide") {
+    width: 65%;
+  }
+
+  @include media(">=wide") {
+    width: 50%;
   }
 }
