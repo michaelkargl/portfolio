@@ -1,4 +1,4 @@
-﻿export class UrlUtils {
+export class UrlUtils {
 
     public static getSearchParams(): URLSearchParams {
         const searchParams = typeof window !== 'undefined' ? window.location.search : '';
@@ -18,6 +18,13 @@
             urlParams.set(name, value);
             window.location.search = urlParams.toString();
         }
+    }
+
+    public static replaceUrlParam(name: string, value: string) {
+        const urlParams = this.getSearchParams();
+        urlParams.set(name, value);
+        const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+        window.history.replaceState({}, '', newUrl);
     }
 
 }

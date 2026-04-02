@@ -6,6 +6,8 @@ import {Anchor, Table, TableBody, TableDataCell, TableRow, TreeView} from "react
 import {TreeLeaf} from "react95/dist/TreeView/TreeView";
 import './projects-ui.scss';
 import Image95 from "../image95/image95";
+import {UrlUtils} from "../../utils/UrlUtils";
+import {URLParams} from "../../constants/UrlParams";
 
 
 type ProjectsUiProps = {
@@ -104,15 +106,22 @@ const ProjectsUi: React.FC<ProjectsUiProps> = (props): ReactElement => {
             mapProjectToTreeElement(props.project)
         ]);
 
-        const firstChild = props.project.children?.[0];
-        if (firstChild) {
-            setProject(firstChild);
+        const projectIdParam = UrlUtils.getUrlParam(URLParams.Projects.ProjectId);
+        const projectFromUrl = projectIdParam ? findProject(props.project, projectIdParam) : null;
+        const initialProject = projectFromUrl ?? props.project.children?.[0] ?? null;
+
+        if (initialProject) {
+            setProject(initialProject);
+            UrlUtils.replaceUrlParam(URLParams.Projects.ProjectId, initialProject.id);
         }
     }, [])
 
     const selectProject = (searchRoot: Project, id: string) => {
         const project = findProject(searchRoot, id);
-        setProject(project)
+        setProject(project);
+        if (project) {
+            UrlUtils.replaceUrlParam(URLParams.Projects.ProjectId, project.id);
+        }
     }
 
     return (<div className='project-ui-component'>
