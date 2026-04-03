@@ -9,5 +9,5 @@ description: Custom PCB design for a presence indicator built around the
   power and debug headers for firmware development.
 url: https://github.com/michaelkargl/presence-cube-schematics
 image: https://raw.githubusercontent.com/michaelkargl/presence-cube-schematics/refs/heads/main/images/screenshot-kicad-pcb.png
-parentId: bc972606
+parentId: presence-system
 ---
