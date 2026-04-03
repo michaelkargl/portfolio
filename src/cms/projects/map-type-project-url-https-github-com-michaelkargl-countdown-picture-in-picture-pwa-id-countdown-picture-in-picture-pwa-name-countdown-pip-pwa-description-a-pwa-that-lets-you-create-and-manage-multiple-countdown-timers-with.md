@@ -7,4 +7,5 @@ description: A PWA that lets you create and manage multiple countdown timers
   using the Document Picture-in-Picture API. Timers persist in IndexedDB so they
   automatically resume after a browser restart.
 url: https://github.com/michaelkargl/countdown-picture-in-picture-pwa
+image: https://raw.githubusercontent.com/michaelkargl/countdown-picture-in-picture-pwa/refs/heads/master/images/screenshot.png
 ---
