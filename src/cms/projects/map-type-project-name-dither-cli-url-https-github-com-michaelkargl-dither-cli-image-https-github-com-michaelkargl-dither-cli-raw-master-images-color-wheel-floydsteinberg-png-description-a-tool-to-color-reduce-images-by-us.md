@@ -1,9 +1,10 @@
 ---
 type: project
-id: bc972607
+id: dither-cli
 name: Dither CLI
-description: A tool to color reduce images by using dithering algorithms using
-  different algorithms like Bayer or Floyd-Steinberg.
+description: Takes any image and reduces it to a user-specified color palette
+  using dithering — the technique of arranging limited colors to simulate a
+  wider range (think of displaying full color images on 3 color e-ink displays).
 url: https://github.com/michaelkargl/dither-cli
 image: https://raw.githubusercontent.com/michaelkargl/dither-cli/refs/heads/master/images/color-wheel.png
 parentId: ""
