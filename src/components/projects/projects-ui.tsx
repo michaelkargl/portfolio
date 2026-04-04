@@ -33,7 +33,7 @@ type ProjectsUiProps = {
 function mapProjectToTreeElement(project: Project): TreeLeaf<string> {
     return {
         id: project.id,
-        label: `Project ${project.name}`,
+        label: project.name,
         icon: '🗃️',
         items: (project.children ?? []).map(mapProjectToTreeElement)
     };
