@@ -137,32 +137,21 @@ training: >+
 
   [Diploma in Photography]:  https://lightbox--academy-at.translate.goog/f-fotografie-ausbildung-wien-diplom/?_x_tr_sl=de&_x_tr_tl=en&_x_tr_hl=de&_x_tr_pto=wapp
 
-links: >-
+links: |-
   ## Links
 
-
   * 🔗 [GitHub]
-
   * 🔗 [GitLab] _(migrating to github)_
-
   * 🔗 [LinkedIn]
-
   * 🔗 [Pluralsight]
-
 
   `-------------------------------`
 
-
   * 🔗 [Photography Portfolio]
 
-
   [GitLab]: https://gitlab.com/michaelkargl
-
   [GitHub]: https://github.com/michaelkargl
-
   [LinkedIn]: https://www.linkedin.com/in/osamichaelkargl
-
-  [Photography Portfolio]: https://ohsnaparts.gitlab.io/osasoftworks/portfolio/osaportfolio/
-
+  [Photography Portfolio]: https://michaelkargl.github.io/portfolio-photo/
   [Pluralsight]: https://app.pluralsight.com/profile/michaelkargl
 ---
